@@ -31,6 +31,9 @@ $font: (
 }
 
 /* HEADER */
+.header {
+  display: flex;
+}
 
 /* ACCUEIL - SECTION de RECHERCHE */
 
@@ -59,9 +62,17 @@ $font: (
 .restaurant-card__like-button {
   grid-area: restaurant-card__like-button;
 }
-/* PAGES MENU - MAIN - Header */
+/* PAGES MENU - MAIN */
+.starters-section__item-price, .plates-section__item-price, .desserts-section__item-price {
+  display:inline-block;
+}
 
+/* PAGES MENU - MAIN - Header */
+.main-header__heading {
+  display: inline-block;
+}
 /* PAGES MENU - MAIN - Entrées */
+
 
 /* PAGES MENU - MAIN - Plats */
 
