@@ -4,10 +4,11 @@
 $color-primary: #9356DC;
 $color-secondary: #FF79DA;
 $color-tertiary: #99E2D0;
+$bgc-search: #F6F6F6;
 
 $font: (
   text: Roboto,
-  logo: Shrikland,
+  logo: Shrikhand,
   default: sans-serif
 );
 
@@ -30,12 +31,29 @@ $font: (
 
 }
 
+a {
+  text-decoration: none;
+}
+
 /* HEADER */
 .header {
   display: flex;
+  align-items: center;
+  background-color: #FFFFFF;
+  height: 63px;
+  padding: 0 calc((100% - 165px)/2);
+  box-shadow: 0px 0px 15px silver;
+  position: relative;
+  z-index: 2;
 }
 
 /* ACCUEIL - SECTION de RECHERCHE */
+.search-section {
+    background-color: $bgc-search;
+  &__form {
+    background-color: darken($bgc-search, 5%);
+  }
+}
 
 
 /* ACCUEIL - ASIDE = SECTION Fonctionnement */
