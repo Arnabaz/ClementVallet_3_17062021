@@ -1,3 +1,58 @@
+@charset "UTF-8";
+:root {
+  font-size: 10px;
+  line-height: 1;
+}
 
+/* HEADER */
+/* ACCUEIL - SECTION de RECHERCHE */
+/* ACCUEIL - ASIDE = SECTION Fonctionnement */
+.process__title {
+  display: inline-block;
+}
+
+/* ACCUEIL - SECTION PRINCIPALE = LISTE Restaurants */
+.restaurant-card__info {
+  display: grid;
+  grid-template-areas: "restaurant-card__name restaurant-card__like-button" "restaurant-card__place restaurant-card__like-button";
+}
+
+.restaurant-card__name {
+  grid-area: restaurant-card__name;
+}
+
+.restaurant-card__place {
+  grid-area: restaurant-card__place;
+}
+
+.restaurant-card__like-button {
+  grid-area: restaurant-card__like-button;
+}
+
+/* PAGES MENU - MAIN - Header */
+/* PAGES MENU - MAIN - Entrées */
+/* PAGES MENU - MAIN - Plats */
+/* PAGES MENU - MAIN - Desserts */
+/* FOOTER */
+.footer {
+  background-color: #353535;
+  color: #FFF;
+  padding-left: 20px;
+}
+.footer__logo {
+  font-family: Shrikland, sans-serif;
+}
+.footer__list {
+  list-style: none;
+}
+.footer__list-item {
+  font-family: Roboto, sans-serif;
+  font-weight: 100;
+}
+.footer__list-icon {
+  color: #FFF;
+  height: 20px;
+  width: 20px;
+}
 
 /*# sourceMappingURL=main.css.map */
