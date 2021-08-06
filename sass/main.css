@@ -10,12 +10,13 @@ body {
 
 a {
   text-decoration: none;
+  color: #000;
 }
 
 /* HEADER */
 .header {
   display: flex;
-  padding: 17.25px 0px;
+  padding: 17.25px 0;
   align-items: center;
   justify-content: center;
   background-color: #FFFFFF;
@@ -48,26 +49,110 @@ a {
 }
 
 /* ACCUEIL - ASIDE = SECTION Fonctionnement */
+.process-section {
+  background-color: #FFFFFF;
+}
+
 .process__card-text {
   display: inline-block;
 }
 
 /* ACCUEIL - SECTION PRINCIPALE = LISTE Restaurants */
+.restaurants-section {
+  background-color: #F6F6F6;
+  display: grid;
+  grid-template-areas: "restaurants" "restaurant-card-1" "restaurant-card-2" "restaurant-card-3" "restaurant-card-4";
+  row-gap: 18px;
+  padding: 58px 20px 64px 20px;
+}
+
+.restaurants {
+  grid-area: restaurants;
+}
+.restaurants__heading {
+  font-family: Roboto, sans-serif;
+  line-height: 20px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  padding-bottom: 8px;
+}
+
+.restaurant-card {
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  box-shadow: 1px 3px 8px 1px silver;
+  cursor: pointer;
+}
+.restaurant-card.restaurant-card-1 {
+  grid-area: restaurant-card-1;
+}
+.restaurant-card.restaurant-card-2 {
+  grid-area: restaurant-card-2;
+}
+.restaurant-card.restaurant-card-3 {
+  grid-area: restaurant-card-3;
+}
+.restaurant-card.restaurant-card-4 {
+  grid-area: restaurant-card-4;
+}
+
+.restaurant-card__img {
+  height: 174px;
+  object-fit: cover;
+  border-radius: 15px 15px 0 0;
+}
+
+.restaurant-card__new {
+  position: absolute;
+  z-index: 2;
+  font-family: Roboto, sans-serif;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 29px;
+  width: 81px;
+  border-radius: 5px;
+  background-color: #99E2D0;
+  color: #1b6150;
+  right: 32px;
+  margin-top: 12px;
+}
+
 .restaurant-card__info {
   display: grid;
-  grid-template-areas: "restaurant-card__name restaurant-card__like-button" "restaurant-card__place restaurant-card__like-button";
+  grid-template-areas: "restaurant-card__name . restaurant-card__like-button" "restaurant-card__place . restaurant-card__like-button";
+  grid-template-columns: auto 1fr auto;
+  padding: 19px 12px 18px 12px;
 }
 
 .restaurant-card__name {
   grid-area: restaurant-card__name;
+  font-family: Roboto, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 16px;
+  padding-bottom: 9px;
 }
 
 .restaurant-card__place {
   grid-area: restaurant-card__place;
+  font-family: Roboto, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 300;
+  line-height: 15px;
 }
 
 .restaurant-card__like-button {
   grid-area: restaurant-card__like-button;
+  justify-self: center;
+  border: none;
+  background-color: white;
+  padding: 0px 11px;
+  cursor: pointer;
+}
+
+.restaurant-card__icon {
+  font-size: 2.5rem;
+  font-weight: 100;
 }
 
 /* PAGES MENU - MAIN */
@@ -87,7 +172,7 @@ a {
 .footer {
   background-color: #353535;
   color: #FFF;
-  padding: 23px 0px 30px 20px;
+  padding: 23px 0 30px 20px;
 }
 .footer__heading {
   font-family: Shrikhand, sans-serif;
