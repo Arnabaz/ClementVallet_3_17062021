@@ -91,15 +91,27 @@ a {
       font-size: 1.5rem;
     }
     &-input {
-      @include font-family(text, default);
       border: none;
+      @include font-family(text, default);
       font-size: 1.6rem;
       font-weight: 500;
       color: black;
-      line-height: 50px;
+      line-height: 48px;
       background-color: darken($bgc-search, 5%);
       text-align: center;
       width: calc(100% - 240px);
+      margin-top: 2px;
+      &::placeholder {
+        @include font-family(text, default);
+        font-size: 1.6rem;
+        font-weight: 500;
+        color: black;
+      }
+      &:focus {
+        outline: 2px solid $color-primary;
+        color: darken($color-primary, 20%);
+        background-color: $bgc-search;
+      }
     }
   }
   &__heading {
@@ -131,7 +143,10 @@ a {
     border-radius: 25px;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
     background: linear-gradient(0deg, #9b63df 0%, #ff88de 120%);
-
+    &:hover {
+      box-shadow: 5px 5px 5px #c5c4c4;
+      background: linear-gradient(to top left, #a674e2, #ff9de4);
+    }
   }
 
 }
@@ -321,26 +336,42 @@ a {
 
 /* PAGES MENU - MAIN - Header */
 .main {
-  padding: 0 20px;
+  padding: 0 20px 33px 20px;
   background-color: $bgc-search;
   &.menu-page {
     display: grid;
     grid-template-areas: "starters-section""plates-section""desserts-section";
   }
   &-header{
-    margin: 0 -20px 0 -20px;
+    margin: 0 -20px;
     &__img {
-      height: 220px;
+      height: 257px;
       object-fit: cover;
+      margin-bottom: -37px;
     }
     &__heading {
-      display: inline-block;
-      @include font-family(text, default);
-      font-size: 2rem;
+      @include font-family(logo, default);
+      position: relative;
+      z-index: 10;
+      font-size: 2.7rem;
       font-weight: 700;
-      font-style: italic;
-      line-height: 30px;
-      padding: 0 20px;
+      line-height: 25px;
+      padding: 37px 20px 0 20px;
+      border-radius: 37px 37px 0 0;
+      background-color: $bgc-search;
+    }
+    &__like-button {
+      position: absolute;
+      z-index: 10;
+      right: 35px;
+      margin-top: -25px;
+      border: none;
+      background-color: $bgc-search;
+    }
+    &__icon {
+      @include font-family(text, default);
+      font-size: 2.5rem;
+      font-weight: 100;
     }
 }
 
@@ -349,13 +380,24 @@ a {
 .menu-section {
   display: grid;
   grid-template-areas: "menu-heading""menu-item-1""menu-item-2""menu-item-3";
+  grid-template-rows: 64px repeat(3, 68px);
   row-gap: 13px;
   h2 {
     grid-area: menu-heading;
     @include font-family(text, default);
+    display: inline;
     font-size: 1.5rem;
-    font-weight: 500;
-    padding-top: 33px;
+    font-weight: 400;
+    text-transform: uppercase;
+    padding-top: 34px;
+    line-height: 30px;
+    &::after {
+      display: block;
+      content:"";
+      height: 0;
+      width: 40px;
+      border-bottom: 3px solid $color-tertiary;
+    }
   }
   div {
     @include font-family(text, default);
@@ -370,13 +412,20 @@ a {
   }
   h3 {
     line-height: 25px;
-  }
-  span {
+    font-size: 1.7rem;
+    font-weight: 600;
 
   }
-  p {
+  span {
+    font-size: 1.4rem;
+    font-weight: 300;
     line-height: 25px;
     margin-bottom: 3px;
+  }
+  p {
+    font-size: 1.4rem;
+    font-weight: 500;
+    text-align: right;
   }
 }
 
@@ -398,6 +447,22 @@ a {
 /* PAGES MENU - MAIN - Plats */
 
 /* PAGES MENU - MAIN - Desserts */
+
+/* BOUTON COMMANDE */
+.main__button {
+  @include font-family(text, default);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: white;
+  width: 186px;
+  line-height: 50px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(0deg, #9b63df 0%, #ff88de 120%);
+  justify-self: center;
+  margin: 50px 0;
+  cursor: pointer;
+}
 
 /* FOOTER */
 .footer {
