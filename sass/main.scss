@@ -18,7 +18,15 @@ $font: (
   $font-secondary: map-get($font, $font-secondary);
   font-family: $font-primary, $font-secondary;
 }
+@mixin button-description {
 
+}
+@mixin button-hover {
+  &:hover {
+    box-shadow: 5px 5px 5px #c5c4c4;
+    background: linear-gradient(to top left, #a674e2, #ff9de4);
+  }
+}
 
 // Fonctions
 
@@ -85,10 +93,11 @@ a {
     margin: 0 -20px;
     height: 50px;
     &-label {
-      line-height : 50px;
+      display: inline-block;
     }
     &-icon {
       font-size: 1.5rem;
+      line-height: 50px!important;
     }
     &-input {
       border: none;
@@ -99,7 +108,7 @@ a {
       line-height: 48px;
       background-color: darken($bgc-search, 5%);
       text-align: center;
-      width: calc(100% - 240px);
+      width: 40%;
       margin-top: 2px;
       &::placeholder {
         @include font-family(text, default);
@@ -143,10 +152,7 @@ a {
     border-radius: 25px;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
     background: linear-gradient(0deg, #9b63df 0%, #ff88de 120%);
-    &:hover {
-      box-shadow: 5px 5px 5px #c5c4c4;
-      background: linear-gradient(to top left, #a674e2, #ff9de4);
-    }
+    @include button-hover;
   }
 
 }
@@ -294,8 +300,8 @@ a {
 .restaurant-card__info {
   display:grid;
   grid-template-areas:
-  "restaurant-card__name . restaurant-card__like-button"
-  "restaurant-card__place . restaurant-card__like-button";
+  "restaurant-card__name . restaurant-card__like"
+  "restaurant-card__place . restaurant-card__like";
   grid-template-columns: auto 1fr auto;
   padding: 12px;
 }
@@ -316,17 +322,27 @@ a {
   padding-bottom: 5px;
 }
 
-.restaurant-card__like-button {
-  grid-area: restaurant-card__like-button;
+.restaurant-card__like.restaurant-card__icon--empty {
+  grid-area: restaurant-card__like;
   justify-self: center;
   border: none;
   background-color: white;
   padding: 0 11px;
   cursor: pointer;
-}
-.restaurant-card__icon {
   font-size: 2.5rem;
   font-weight: 100;
+  line-height: 53px;
+}
+.restaurant-card__like.restaurant-card__icon--full {
+  grid-area: restaurant-card__like;
+  justify-self: center;
+  border: none;
+  background-color: white;
+  padding: 0 11px;
+  cursor: pointer;
+  font-size: 2.5rem;
+  font-weight: 100;
+  line-height: 53px;
 }
 
 /* PAGES MENU - MAIN */
@@ -360,15 +376,13 @@ a {
       border-radius: 37px 37px 0 0;
       background-color: $bgc-search;
     }
-    &__like-button {
+    &__like.restaurant-card__icon {
       position: absolute;
       z-index: 10;
       right: 35px;
       margin-top: -25px;
       border: none;
       background-color: $bgc-search;
-    }
-    &__icon {
       @include font-family(text, default);
       font-size: 2.5rem;
       font-weight: 100;
@@ -462,7 +476,8 @@ a {
   justify-self: center;
   margin: 50px 0;
   cursor: pointer;
-}
+  @include button-hover;
+  }
 
 /* FOOTER */
 .footer {
