@@ -105,38 +105,72 @@ a {
 
 /* ACCUEIL - ASIDE = SECTION Fonctionnement */
 .process-section {
+  display: grid;
+  grid-template-areas: "process-section__header" "process-section__card-1" "process-section__card-2" "process-section__card-3";
+  row-gap: 24px;
   background-color: #FFFFFF;
   padding: 50px 20px 68px 20px;
+}
+.process-section__header {
+  grid-area: process-section__header;
+  padding-bottom: 6px;
 }
 .process-section__heading {
   font-family: Roboto, sans-serif;
   font-size: 2rem;
   font-weight: 500;
-  line-height: 20px;
+  line-height: 25px;
   color: black;
 }
 .process-section__card {
-  line-height: 72px;
+  background-color: #F6F6F6;
+  border-radius: 20px;
+  box-shadow: 0 5px 10px silver;
+  user-select: none;
+}
+.process-section__card:hover {
+  background-color: #F5EDFF;
+}
+.process-section__card:hover .process-section__card-icon {
+  color: #9356DC;
+}
+.process-section__card.process-section__card-1 {
+  grid-area: process-section__card-1;
+}
+.process-section__card.process-section__card-2 {
+  grid-area: process-section__card-2;
+}
+.process-section__card.process-section__card-3 {
+  grid-area: process-section__card-3;
 }
 .process-section__card-number {
   font-family: Roboto, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
   position: absolute;
+  left: 10px;
+  margin: 24px 0;
   color: white;
   background-color: #9356DC;
-  border-radius: 50px;
+  border-radius: 25px;
+  line-height: 25px;
+  width: 25px;
+  text-align: center;
 }
 .process-section__card-icon {
+  line-height: 25px !important;
   font-size: 1.5rem;
+  color: #666666;
+  margin: 24px 5.5% 24px 11%;
+  width: 20px;
 }
 .process-section__card-text {
   display: inline-block;
   font-family: Roboto, sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 600;
-  text-align: center;
-  background-color: #F6F6F6;
-  border-radius: 20px;
-  box-shadow: 0 5px 10px silver;
+  line-height: 73px;
+  cursor: default;
 }
 
 /* ACCUEIL - SECTION PRINCIPALE = LISTE Restaurants */
@@ -154,7 +188,7 @@ a {
 .restaurants__heading {
   font-family: Roboto, sans-serif;
   line-height: 20px;
-  font-size: 1.6rem;
+  font-size: 2.4rem;
   font-weight: 700;
   padding-bottom: 8px;
 }
@@ -189,12 +223,13 @@ a {
   z-index: 2;
   font-family: Roboto, sans-serif;
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.4rem;
+  font-weight: 500;
   line-height: 29px;
   width: 81px;
-  border-radius: 5px;
+  border-radius: 2px;
   background-color: #99E2D0;
-  color: #1b6150;
+  color: #278870;
   right: 32px;
   margin-top: 12px;
 }
@@ -203,24 +238,25 @@ a {
   display: grid;
   grid-template-areas: "restaurant-card__name . restaurant-card__like-button" "restaurant-card__place . restaurant-card__like-button";
   grid-template-columns: auto 1fr auto;
-  padding: 19px 12px 18px 12px;
+  padding: 12px;
 }
 
 .restaurant-card__name {
   grid-area: restaurant-card__name;
   font-family: Roboto, sans-serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 16px;
-  padding-bottom: 9px;
+  font-size: 1.7rem;
+  font-weight: 800;
+  line-height: 25px;
+  padding-top: 3px;
 }
 
 .restaurant-card__place {
   grid-area: restaurant-card__place;
   font-family: Roboto, sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   font-weight: 300;
-  line-height: 15px;
+  line-height: 20px;
+  padding-bottom: 5px;
 }
 
 .restaurant-card__like-button {
@@ -243,8 +279,70 @@ a {
 }
 
 /* PAGES MENU - MAIN - Header */
+.main {
+  padding: 0 20px;
+  background-color: #F6F6F6;
+}
+.main.menu-page {
+  display: grid;
+  grid-template-areas: "starters-section" "plates-section" "desserts-section";
+}
+.main-header {
+  margin: 0 -20px 0 -20px;
+}
+.main-header__img {
+  height: 220px;
+  object-fit: cover;
+}
 .main-header__heading {
   display: inline-block;
+  font-family: Roboto, sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 30px;
+  padding: 0 20px;
+}
+
+.menu-section {
+  display: grid;
+  grid-template-areas: "menu-heading" "menu-item-1" "menu-item-2" "menu-item-3";
+  row-gap: 13px;
+}
+.menu-section h2 {
+  grid-area: menu-heading;
+  font-family: Roboto, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  padding-top: 33px;
+}
+.menu-section div {
+  font-family: Roboto, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 300;
+  height: 68px;
+  background-color: white;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 5px 10px silver;
+  cursor: pointer;
+}
+.menu-section h3 {
+  line-height: 25px;
+}
+.menu-section p {
+  line-height: 25px;
+  margin-bottom: 3px;
+}
+
+.starters-section__item-1 {
+  grid-area: menu-item-1;
+}
+.starters-section__item-2 {
+  grid-area: menu-item-2;
+}
+.starters-section__item-3 {
+  grid-area: menu-item-3;
 }
 
 /* PAGES MENU - MAIN - Entrées */
