@@ -1,30 +1,77 @@
-// Import
+// IMPORT
 
-// Variables
+// VARIABLES
+//Variables - Couleurs
 $color-primary: #9356DC;
 $color-secondary: #FF79DA;
 $color-tertiary: #99E2D0;
-$bgc-search: #F6F6F6;
+$bgc-primary: #F6F6F6;
 
+//Variables - Polices
 $font: (
   text: Roboto,
   logo: Shrikhand,
   default: sans-serif
 );
 
-// Mixin
+//Variables - Media queries
+$breakpoints: (
+        mobile-min: 320px,
+        mobile-1: 360px,
+        mobile-max: 425px
+);
+
+//Variables - Grid
+$grid-ta__restaurant-section: ("restaurants""restaurant-card-1""restaurant-card-2""restaurant-card-3""restaurant-card-4");
+$grid-ta__menu-page: ("starters-section""plates-section""desserts-section");
+$grid-ta__menu-section: ("menu-heading""menu-item-1""menu-item-2""menu-item-3");
+$grid-ta__menu-item: ("item-heading .""item-complement item-price");
+
+//Variables - Special
+$section-name: ".starters-section", ".plates-section", ".desserts-section";
+$counter: 1, 2, 3;
+
+// MIXINS
+//Mixins - Font
 @mixin font-family ($font-primary, $font-secondary){
   $font-primary: map-get($font, $font-primary);
   $font-secondary: map-get($font, $font-secondary);
   font-family: $font-primary, $font-secondary;
 }
 @mixin button-description {
-
+  @include font-family(text, default);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 50px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(160deg, $color-secondary 10%, $color-primary 75%);
+  box-shadow: 5px 5px 10px silver;
 }
 @mixin button-hover {
   &:hover {
-    box-shadow: 5px 5px 5px #c5c4c4;
-    background: linear-gradient(to top left, #a674e2, #ff9de4);
+    box-shadow: 5px 5px 15px 10px silver;
+    background: linear-gradient(160deg, lighten($color-secondary, 5%) 10%, lighten($color-primary, 5%) 75%);
+  }
+}
+
+@mixin heart {}
+
+//Mixins - Grid
+@mixin grid-layout ($grid-template-areas) {
+  display: grid;
+  grid-template-areas: $grid-template-areas;
+}
+
+@mixin menu-grid {
+  @for $counter from 1 through 3 {
+    #{$section-name} {
+      &__item-#{$counter}{
+      grid-area: menu-item-#{$counter};
+        @include grid-layout ($grid-ta__menu-item);
+    }
+    }
   }
 }
 
@@ -36,7 +83,6 @@ $font: (
 :root {
   font-size: 10px;
   line-height: 1;
-
 }
 
 body {
@@ -45,7 +91,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #000;
+  color: #000000;
 }
 
 /* HEADER */
@@ -81,14 +127,14 @@ a {
 
 /* ACCUEIL - SECTION de RECHERCHE */
 .search-section {
-  background-color: $bgc-search;
+  background-color: $bgc-primary;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: space-between;
   padding: 0 20px 57px 20px;
   &__form {
-    background-color: darken($bgc-search, 5%);
+    background-color: darken($bgc-primary, 5%);
     text-align: center;
     margin: 0 -20px;
     height: 50px;
@@ -106,7 +152,7 @@ a {
       font-weight: 500;
       color: black;
       line-height: 48px;
-      background-color: darken($bgc-search, 5%);
+      background-color: darken($bgc-primary, 5%);
       text-align: center;
       width: 40%;
       margin-top: 2px;
@@ -119,7 +165,7 @@ a {
       &:focus {
         outline: 2px solid $color-primary;
         color: darken($color-primary, 20%);
-        background-color: $bgc-search;
+        background-color: $bgc-primary;
       }
     }
   }
@@ -141,20 +187,11 @@ a {
     margin-bottom: 34px;
   }
   &__button {
+    @include button-description;
     align-self: center;
-    @include font-family(text,default);
-    font-size: 1.6rem;
-    font-weight: 400;
-    color: white;
     width: 218px;
-    line-height: 50px;
-    border: none;
-    border-radius: 25px;
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
-    background: linear-gradient(0deg, #9b63df 0%, #ff88de 120%);
     @include button-hover;
   }
-
 }
 
 /* ACCUEIL - ASIDE = SECTION Fonctionnement */
@@ -176,7 +213,7 @@ a {
     color: black;
   }
   &__card {
-    background-color: $bgc-search;
+    background-color: $bgc-primary;
     border-radius: 20px;
     box-shadow: 0 5px 10px silver;
     user-select: none;
@@ -202,7 +239,7 @@ a {
       position: absolute;
       left: 10px;
       margin: 24px 0;
-      color: white;
+      color: #FFFFFF;
       background-color: $color-primary;
       border-radius: 25px;
       line-height: 25px;
@@ -212,7 +249,7 @@ a {
     &-icon {
       line-height: 25px!important;
       font-size: 1.5rem;
-      color: lighten(black, 40%);
+      color: lighten(#000000, 40%);
       margin: 24px 5.5% 24px 11%;
       width: 20px;
       }
@@ -227,24 +264,15 @@ a {
     }
 }
 
-
-
 /* ACCUEIL - SECTION PRINCIPALE = LISTE Restaurants */
-.restaurants-section {
-  background-color: $bgc-search;
-  display: grid;
-  grid-template-areas: "restaurants"
-  "restaurant-card-1"
-  "restaurant-card-2"
-  "restaurant-card-3"
-  "restaurant-card-4";
-  row-gap: 18px;
-  padding: 58px 20px 64px 20px;
-}
-
-.restaurants {
+.restaurant {
   grid-area: restaurants;
-
+  &-section {
+    background-color: $bgc-primary;
+    @include grid-layout ($grid-ta__restaurant-section);
+    row-gap: 18px;
+    padding: 58px 20px 64px 20px;
+  }
   &__heading {
     @include font-family(text, default);
     line-height: 20px;
@@ -252,97 +280,90 @@ a {
     font-weight: 700;
     padding-bottom: 8px;
   }
-}
-.restaurant-card {
+  &-card {
     background-color: #FFFFFF;
     border-radius: 20px;
     box-shadow: 1px 3px 8px 1px silver;
     cursor: pointer;
-
     &.restaurant-card-1 {
       grid-area: restaurant-card-1;
     }
-
     &.restaurant-card-2 {
       grid-area: restaurant-card-2;
     }
-
     &.restaurant-card-3 {
       grid-area: restaurant-card-3;
     }
-
     &.restaurant-card-4 {
       grid-area: restaurant-card-4;
     }
-  }
-.restaurant-card__img {
-  height: 174px;
-  object-fit: cover;
-  border-radius: 15px 15px 0 0;
-}
-
-.restaurant-card__new {
-  position: absolute;
-  z-index: 2;
-  @include font-family(text, default);
-  text-align: center;
-  font-size: 1.4rem;
-  font-weight: 500;
-  line-height: 29px;
-  width: 81px;
-  border-radius: 2px;
-  background-color: $color-tertiary;
-  color: darken($color-tertiary, 40%);
-  right: 32px;
-  margin-top: 12px;
-
-}
-.restaurant-card__info {
-  display:grid;
-  grid-template-areas:
+    &__img {
+      height: 174px;
+      object-fit: cover;
+      border-radius: 15px 15px 0 0;
+    }
+    &__new {
+      position: absolute;
+      z-index: 2;
+      @include font-family(text, default);
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 500;
+      line-height: 29px;
+      width: 81px;
+      border-radius: 2px;
+      background-color: $color-tertiary;
+      color: darken($color-tertiary, 40%);
+      right: 32px;
+      margin-top: 12px;
+    }
+    &__info {
+      display:grid;
+      grid-template-areas:
   "restaurant-card__name . restaurant-card__like"
   "restaurant-card__place . restaurant-card__like";
-  grid-template-columns: auto 1fr auto;
-  padding: 12px;
-}
-.restaurant-card__name {
-  grid-area: restaurant-card__name;
-  @include font-family(text, default);
-  font-size: 1.7rem;
-  font-weight: 800;
-  line-height: 25px;
-  padding-top: 3px;
-}
-.restaurant-card__place {
-  grid-area: restaurant-card__place;
-  @include font-family(text, default);
-  font-size: 1.6rem;
-  font-weight: 300;
-  line-height: 20px;
-  padding-bottom: 5px;
-}
-
-.restaurant-card__like.restaurant-card__icon--empty {
-  grid-area: restaurant-card__like;
-  justify-self: center;
-  border: none;
-  background-color: white;
-  padding: 0 11px;
-  cursor: pointer;
-  font-size: 2.5rem;
-  font-weight: 100;
-  line-height: 53px;
-}
-.restaurant-card__like.restaurant-card__icon--full {
-  grid-area: restaurant-card__like;
-  justify-self: center;
-  border: none;
-  background-color: white;
-  padding: 0 11px;
-  cursor: pointer;
-  font-size: 2.5rem;
-  font-weight: 100;
-  line-height: 53px;
+      grid-template-columns: auto 1fr auto;
+      padding: 12px;
+    }
+    &__name {
+      grid-area: restaurant-card__name;
+      @include font-family(text, default);
+      font-size: 1.7rem;
+      font-weight: 800;
+      line-height: 25px;
+      padding-top: 3px;
+    }
+    &__place {
+      grid-area: restaurant-card__place;
+      @include font-family(text, default);
+      font-size: 1.6rem;
+      font-weight: 300;
+      line-height: 20px;
+      padding-bottom: 5px;
+    }
+    &__like.restaurant-card__icon--empty {
+      grid-area: restaurant-card__like;
+      justify-self: center;
+      border: none;
+      background-color: #FFFFFF;
+      padding: 0 11px;
+      cursor: pointer;
+      font-size: 2.5rem;
+      font-weight: 100;
+      line-height: 53px;
+    }
+    &__like.restaurant-card__icon--full {
+      grid-area: restaurant-card__like;
+      justify-self: center;
+      border: none;
+      background-color: #FFFFFF;
+      padding: 0 11px;
+      cursor: pointer;
+      font-size: 2.5rem;
+      font-weight: 100;
+      line-height: 53px;
+    }
+  }
 }
 
 /* PAGES MENU - MAIN */
@@ -353,10 +374,9 @@ a {
 /* PAGES MENU - MAIN - Header */
 .main {
   padding: 0 20px 33px 20px;
-  background-color: $bgc-search;
+  background-color: $bgc-primary;
   &.menu-page {
-    display: grid;
-    grid-template-areas: "starters-section""plates-section""desserts-section";
+    @include grid-layout ($grid-ta__menu-page);
   }
   &-header{
     margin: 0 -20px;
@@ -374,26 +394,39 @@ a {
       line-height: 25px;
       padding: 37px 20px 0 20px;
       border-radius: 37px 37px 0 0;
-      background-color: $bgc-search;
+      background-color: $bgc-primary;
+      @media (max-width:map-get($breakpoints, mobile-1)){
+        font-size: 2.3rem;
+      }
     }
-    &__like.restaurant-card__icon {
+    &__icon.main-header__like--empty {
       position: absolute;
       z-index: 10;
       right: 35px;
       margin-top: -25px;
       border: none;
-      background-color: $bgc-search;
-      @include font-family(text, default);
+      background-color: $bgc-primary;
+      font-size: 2.5rem;
+      font-weight: 100;
+    }
+    &__icon.main-header__like--full {
+      position: absolute;
+      z-index: 10;
+      right: 35px;
+      margin-top: -25px;
+      border: none;
+      background-color: $bgc-primary;
       font-size: 2.5rem;
       font-weight: 100;
     }
 }
-
 }
 
+// Mise en place grille des menus
+@include menu-grid;
+
 .menu-section {
-  display: grid;
-  grid-template-areas: "menu-heading""menu-item-1""menu-item-2""menu-item-3";
+  @include grid-layout ($grid-ta__menu-section);
   grid-template-rows: 64px repeat(3, 68px);
   row-gap: 13px;
   h2 {
@@ -418,71 +451,61 @@ a {
     font-size: 1.2rem;
     font-weight: 300;
     height : 68px;
-    background-color: white;
+    background-color: #FFFFFF;
     border-radius: 20px;
     padding: 10px;
     box-shadow: 0 5px 10px silver;
     cursor: pointer;
   }
   h3 {
+    grid-area: item-heading;
     line-height: 25px;
     font-size: 1.7rem;
     font-weight: 600;
-
+    @media (max-width:map-get($breakpoints, mobile-1)){
+      font-size: 1.45rem;
+    }
   }
   span {
+    grid-area: item-complement;
     font-size: 1.4rem;
     font-weight: 300;
     line-height: 25px;
     margin-bottom: 3px;
+    @media (max-width:map-get($breakpoints, mobile-1)){
+      font-size: 1.2rem;
+    }
   }
   p {
+    grid-area: item-price;
     font-size: 1.4rem;
     font-weight: 500;
+    line-height: 25px;
     text-align: right;
+    padding-right: 10px;
+    @media (max-width:map-get($breakpoints, mobile-1)){
+      font-size: 1.2rem;
+    }
   }
 }
-
-.starters-section__item {
-  &-1 {
-  grid-area: menu-item-1;
-  }
-  &-2 {
-    grid-area: menu-item-2;
-  }
-  &-3 {
-    grid-area: menu-item-3;
-  }
+// Cas particulier : Menu 2 avec 4 items entrées
+.starters-section__item-4 {
+  @include grid-layout ($grid-ta__menu-item);
 }
-
-/* PAGES MENU - MAIN - Entrées */
-
-
-/* PAGES MENU - MAIN - Plats */
-
-/* PAGES MENU - MAIN - Desserts */
 
 /* BOUTON COMMANDE */
 .main__button {
-  @include font-family(text, default);
-  font-size: 1.6rem;
-  font-weight: 400;
-  color: white;
+  @include button-description;
   width: 186px;
-  line-height: 50px;
-  border: none;
-  border-radius: 25px;
-  background: linear-gradient(0deg, #9b63df 0%, #ff88de 120%);
   justify-self: center;
   margin: 50px 0;
-  cursor: pointer;
   @include button-hover;
   }
 
 /* FOOTER */
 .footer {
   background-color: #353535;
-  color: #FFF;
+  color: #FFFFFF;
   padding: 23px 0 30px 20px;
   &__heading {
     @include font-family (logo, default);
@@ -499,7 +522,7 @@ a {
       padding-bottom: 5px;
     }
     &-icon {
-      color: #FFF;
+      color: #FFFFFF;
       height: 15px;
       width: 15px;
       font-size: 1.5rem;
@@ -507,11 +530,10 @@ a {
     }
     &-link {
       font-size: 1.6rem;
-      color:#FFF;
+      color:#FFFFFF;
       line-height: 20px;
     }
   }
-
 }
 
 
