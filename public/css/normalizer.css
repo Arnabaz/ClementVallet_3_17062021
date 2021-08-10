@@ -61,4 +61,24 @@ textarea,
 select {
     font: inherit;
     padding: 0;
+    margin: 0;
+    border: none;
+}
+
+/* Legend */
+legend {
+    padding: 0;
+}
+
+/* Fieldset */
+fieldset {
+    display:block;
+    padding: 0;
+    margin:0;
+    border:none;
+}
+
+/* Label */
+label {
+    border: none;
 }

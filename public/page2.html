@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Menu - La note enchantée</title>
+        <link rel="icon" type="image/jpg" sizes="16x16" href="./images/logo/ohmyfood-favicon.png">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Shrikhand&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/normalizer.css" />
+        <link rel="stylesheet" href="css/style.css"/>
+        <script
+            src="https://kit.fontawesome.com/662296abb9.js"
+            crossorigin="anonymous"
+        ></script>
+    </head>
+
+    <body>
+        <!-- HEADER -->
+        <header class="header menu-page">
+            <a href="index.html" class="header__link menu-page"><i class="header__arrow fas fa-arrow-left"></i></a>
+            <h1 class="header__heading menu-page">ohmyfood</h1>
+        </header>
+
+        <!-- PARTIE PRINCIPALE -->
+        <main class="main menu-page">
+            <!-- EN-TETE PARTIE PRINCIPALE -->
+            <header class="main-header">
+                <img
+                            src="./images/restaurants/stil-u2Lp8tXIcjw-unsplash.jpg"
+                            alt="plat restaurant gastronomique"
+                            class="main-header__img"
+                        />
+                <h1 class="main-header__heading">La note enchantée</h1>
+                <i class="main-header__icon main-header__like--empty far fa-heart"></i>
+                <i class="main-header__icon main-header__like--full far fa-heart"></i>
+            </header>
+
+            <form class="menu-form" method="post" action="#">
+                <!-- SECTION ENTREES  -->
+                <section class="starters-section menu-section special">
+                    <h2 class="menu-section__heading starters-section__heading">Entrées</h2>
+                        <input type="radio" id="enchanted-starters__label-1" name="enchanted-starters" value="enchanted-starters-1">
+                        <label class="menu-section__label starters-section__label-1" for="enchanted-starters__label-1">
+                            <span class="menu-section__item">
+                                <span class="menu-section__item-heading">Ravioles de foie gras</span>
+                                <span class="menu-section__item-complement">Accompagnés de leur crème à la truffe</span>
+                                <span class="menu-section__item-price"><strong>25€</strong></span>
+                            </span>
+                            <span class="menu-section__checkbox"></span>
+                        </label>
+                    <input type="radio" id="enchanted-starters__label-2" name="enchanted-starters" value="enchanted-starters-2">
+                    <label class="menu-section__label starters-section__label-2" for="enchanted-starters__label-2">
+                        <span class="menu-section__item">
+                            <span class="menu-section__item-heading">Caviar osciètre</span>
+                            <span class="menu-section__item-complement">Sur blini à la farine de blé noir</span>
+                            <span class="menu-section__item-price"><strong>35€</strong></span>
+                        </span>
+                        <span class="menu-section__checkbox"></span>
+                    </label>
+                    <input type="radio" id="enchanted-starters__label-3" name="enchanted-starters" value="enchanted-starters-3">
+                    <label class="menu-section__label starters-section__label-3" for="enchanted-starters__label-3">
+                <span class="menu-section__item">
+                    <span class="menu-section__item-heading">Homard et espuma de potiron</span>
+                    <span class="menu-section__item-complement">Mariné aux zestes d'orange</span>
+                    <span class="menu-section__item-price"><strong>20€</strong></span>
+                </span>
+                        <span class="menu-section__checkbox"></span>
+                    </label>
+                    <input type="radio" id="enchanted-starters__label-4" name="enchanted-starters" value="enchanted-starters-4">
+                    <label class="menu-section__label starters-section__label-4" for="enchanted-starters__label-4">
+                <span class="menu-section__item">
+                    <span class="menu-section__item-heading">Foie gras de canard cuit entier</span>
+                    <span class="menu-section__item-complement">Confiture de figue et pain toasté</span>
+                    <span class="menu-section__item-price"><strong>35€</strong></span>
+                </span>
+                        <span class="menu-section__checkbox"></span>
+                    </label>
+                </section>
+
+                <!-- SECTION PLATS  -->
+                <section class="plates-section menu-section">
+                    <h2 class="menu-section__heading">Plats</h2>
+                    <input type="radio" id="enchanted-plates__label-1" name="enchanted-plates" value="enchanted-plates-1">
+                    <label class="menu-section__label plates-section__label-1" for="enchanted-plates__label-1">
+                 <span class="menu-section__item">
+                    <span class="menu-section__item-heading">Noix de coquilles Saint-Jacques</span>
+                    <span class="menu-section__item-complement">Sur lit de purée de céleri-rave</span>
+                    <span class="menu-section__item-price"><strong>40€</strong></span>
+                </span>
+                        <span class="menu-section__checkbox"></span>
+                    </label>
+                    <input type="radio" id="enchanted-plates__label-2" name="enchanted-plates" value="enchanted-plates-2">
+                    <label class="menu-section__label plates-section__label-2" for="enchanted-plates__label-2">
+                <span class="menu-section__item ">
+                    <span class="menu-section__item-heading">Langoustine poêlée</span>
+                    <span class="menu-section__item-complement">Purée de patate douce</span>
+                    <span class="menu-section__item-price"><strong>35€</strong></span>
+                 </span>
+                        <span class="menu-section__checkbox"></span>
+                    </label>
+                    <input type="radio" id="enchanted-plates__label-3" name="enchanted-plates" value="enchanted-plates-3">
+                    <label class="menu-section__label plates-section__label-3" for="enchanted-plates__label-3">
+                <span class="menu-section__item">
+                    <span class="menu-section__item-heading">Mijoté de queue de boeuf</span>
+                    <span class="menu-section__item-complement">Et riz sauvage aux zestes de citron</span>
+                    <span class="menu-section__item-price"><strong>44€</strong></span>
+                </span>
+                        <span class="menu-section__checkbox"></span>
+                    </label>
+                </section>
+
+                <!-- SECTION DESSERTS  -->
+                <section class="desserts-section menu-section">
+                    <h2 class="menu-section__heading">Desserts</h2>
+                    <input type="radio" id="enchanted-desserts__label-1" name="enchanted-desserts" value="enchanted-desserts-1">
+                    <label class="menu-section__label desserts-section__label-1" for="enchanted-desserts__label-1">
+               <span class="menu-section__item">
+                   <span class="menu-section__item-heading">Macaron noisette et chocolat</span>
+                   <span class="menu-section__item-complement">Glace au caramel brun et sel de Guérande</span>
+                    <span class="menu-section__item-price"><strong>18€</strong></span>
+                </span>
+                        <span class="menu-section__checkbox"></span>
+                    </label>
+                    <input type="radio" id="enchanted-desserts__label-2" name="enchanted-desserts" value="enchanted-desserts-2">
+                    <label class="menu-section__label desserts-section__label-2" for="enchanted-desserts__label-2">
+                <span class="menu-section__item">
+                    <span class="menu-section__item-heading">Baba au rhum revisité</span>
+                    <span class="menu-section__item-complement">Avec son coulis de citron</span>
+                    <span class="menu-section__item-price"><strong>22€</strong></span>
+                </span>
+                        <span class="menu-section__checkbox"></span>
+                    </label>
+                    <input type="radio" id="enchanted-desserts__label-3" name="enchanted-desserts" value="enchanted-desserts-3">
+                    <label class="menu-section__label desserts-section__label-3" for="enchanted-desserts__label-3">
+                <span class="menu-section__item">
+                    <span class="menu-section__item-heading">Tarte au citron meringuée</span>
+                    <span class="menu-section__item-complement">Destructurée</span>
+                    <span class="menu-section__item-price"><strong>23€</strong></span>
+                </span>
+                        <span class="menu-section__checkbox"></span>
+                    </label>
+                </section>
+
+            <!-- BOUTON COMMANDE  -->
+                <button class="main__button">Commander</button>
+            </form>
+        </main>
+
+        <!--  FOOTER  -->
+        <footer class="footer">
+            <h2 class="footer__heading">ohmyfood</h2>
+            <nav>
+                <ul class="footer__list">
+                    <li class="footer__list-item"><a href="#" class="footer__list-link"><i class="footer__list-icon fas fa-utensils"></i>Proposer un restaurant</a></li>
+                    <li class="footer__list-item"><a href="#" class="footer__list-link"><i class="footer__list-icon fas fa-hands-helping"></i>Devenir partenaire</a></li>
+                    <li class="footer__list-item"><a href="#" class="footer__list-link">Mentions légales</a></li>
+                    <li class="footer__list-item"><a href="mailto:contact@ohmyfood.com" class="footer__list-link">Contact</a></li>
+                </ul>
+            </nav>
+        </footer>
+    </body>
+</html>

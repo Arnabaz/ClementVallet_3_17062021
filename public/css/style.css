@@ -27,12 +27,16 @@ a {
   position: absolute;
   left: 20px;
 }
-.header__logo {
-  height: 28.5px;
+.header__heading {
+  font-family: Shrikhand, sans-serif;
+  font-size: 3rem;
+  line-height: 28.5px;
 }
-.header__logo.menu-page {
-  height: 28.5px;
-  object-fit: contain;
+.header__heading.menu-page {
+  font-family: Shrikhand, sans-serif;
+  font-size: 3rem;
+  line-height: 28.5px;
+  user-select: none;
 }
 .header__arrow {
   font-size: 1.8rem;
@@ -42,33 +46,20 @@ a {
 /* ACCUEIL - SECTION de RECHERCHE */
 .search-section {
   background-color: #F6F6F6;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: space-between;
-  padding: 0 20px 57px 20px;
 }
 .search-section__form {
-  background-color: #e9e9e9;
   text-align: center;
-  margin: 0 -20px;
-  height: 50px;
 }
-.search-section__form-label {
-  display: inline-block;
-}
-.search-section__form-icon {
+.search-section__form-icon.fas {
   font-size: 1.5rem;
-  line-height: 50px !important;
+  line-height: 50px;
 }
 .search-section__form-input {
   border: none;
   font-family: Roboto, sans-serif;
   font-size: 1.6rem;
   font-weight: 500;
-  color: black;
   line-height: 48px;
-  background-color: #e9e9e9;
   text-align: center;
   width: 40%;
   margin-top: 2px;
@@ -84,24 +75,17 @@ a {
   color: #6023a9;
   background-color: #F6F6F6;
 }
-.search-section__heading {
+.search-section__form-heading {
   font-family: Roboto, sans-serif;
   font-size: 2.2rem;
   font-weight: 700;
-  text-align: center;
-  line-height: 24px;
-  padding: 0 40px;
-  margin: 43px 0 20px 0;
 }
-.search-section__description {
+.search-section__form-description {
   font-family: Roboto, sans-serif;
   font-size: 1.6rem;
   font-weight: 300;
-  text-align: center;
-  line-height: 19px;
-  margin-bottom: 34px;
 }
-.search-section__button {
+.search-section__form-button {
   font-family: Roboto, sans-serif;
   font-size: 1.6rem;
   font-weight: 400;
@@ -109,26 +93,24 @@ a {
   line-height: 50px;
   border: none;
   border-radius: 25px;
-  background: linear-gradient(160deg, #FF79DA 10%, #9356DC 75%);
-  box-shadow: 5px 5px 10px silver;
-  align-self: center;
+  background: linear-gradient(to top left, #9356DC 10%, #FF79DA 75%);
+  box-shadow: 1px 3px 5px silver;
   width: 218px;
 }
-.search-section__button:hover {
-  box-shadow: 5px 5px 15px 10px silver;
-  background: linear-gradient(160deg, #ff93e1 10%, #a16be0 75%);
+.search-section__form-button:hover {
+  box-shadow: 2px 5px 5px 1px silver;
+  background: linear-gradient(to top left, #ae80e5 10%, #fface8 75%);
 }
 
-/* ACCUEIL - ASIDE = SECTION Fonctionnement */
+/* ACCUEIL - SECTION Process */
 .process-section {
-  display: grid;
-  grid-template-areas: "process-section__header" "process-section__card-1" "process-section__card-2" "process-section__card-3";
-  row-gap: 24px;
   background-color: #FFFFFF;
-  padding: 50px 20px 68px 20px;
+  padding-top: 50px;
+  padding-right: 20px;
+  padding-bottom: 68px;
+  padding-left: calc((25px / 2) + 20px);
 }
 .process-section__header {
-  grid-area: process-section__header;
   padding-bottom: 6px;
 }
 .process-section__heading {
@@ -138,55 +120,95 @@ a {
   line-height: 25px;
   color: black;
 }
-.process-section__card {
-  background-color: #F6F6F6;
-  border-radius: 20px;
-  box-shadow: 0 5px 10px silver;
-  user-select: none;
+.process-section__list {
+  display: grid;
+  grid-template-areas: "process-section__card-1" "process-section__card-2" "process-section__card-3";
+  row-gap: 24px;
 }
-.process-section__card:hover {
-  background-color: #F5EDFF;
-}
-.process-section__card:hover .process-section__card-icon {
-  color: #9356DC;
-}
-.process-section__card.process-section__card-1 {
+.process-section .process-section__card-1 {
   grid-area: process-section__card-1;
 }
-.process-section__card.process-section__card-2 {
-  grid-area: process-section__card-2;
-}
-.process-section__card.process-section__card-3 {
-  grid-area: process-section__card-3;
-}
-.process-section__card-number {
+.process-section .process-section__card-1::before {
+  display: inline-block;
   font-family: Roboto, sans-serif;
   font-size: 1.2rem;
   font-weight: 400;
-  position: absolute;
-  left: 10px;
+  position: relative;
+  content: "1";
+  top: -2.5px;
+  left: calc(-25px / 2);
   margin: 24px 0;
   color: #FFFFFF;
   background-color: #9356DC;
   border-radius: 25px;
   line-height: 25px;
   width: 25px;
+  height: 25px;
   text-align: center;
 }
-.process-section__card-icon {
-  line-height: 25px !important;
-  font-size: 1.5rem;
-  color: #666666;
-  margin: 24px 5.5% 24px 11%;
-  width: 20px;
+.process-section .process-section__card-2 {
+  grid-area: process-section__card-2;
 }
-.process-section__card-text {
+.process-section .process-section__card-2::before {
   display: inline-block;
+  font-family: Roboto, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  position: relative;
+  content: "2";
+  top: -2.5px;
+  left: calc(-25px / 2);
+  margin: 24px 0;
+  color: #FFFFFF;
+  background-color: #9356DC;
+  border-radius: 25px;
+  line-height: 25px;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+}
+.process-section .process-section__card-3 {
+  grid-area: process-section__card-3;
+}
+.process-section .process-section__card-3::before {
+  display: inline-block;
+  font-family: Roboto, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  position: relative;
+  content: "3";
+  top: -2.5px;
+  left: calc(-25px / 2);
+  margin: 24px 0;
+  color: #FFFFFF;
+  background-color: #9356DC;
+  border-radius: 25px;
+  line-height: 25px;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+}
+.process-section__card {
+  background-color: #F6F6F6;
+  border-radius: 20px;
+  box-shadow: 0 5px 10px silver;
   font-family: Roboto, sans-serif;
   font-size: 1.6rem;
   font-weight: 600;
-  line-height: 73px;
-  cursor: default;
+  user-select: none;
+}
+.process-section__card.process-section__card-3 {
+  background-color: #F5EDFF;
+}
+.process-section__card.process-section__card-3 .process-section__card-icon {
+  color: #9356DC;
+}
+.process-section__card-icon.fas {
+  line-height: 25px;
+  font-size: 1.5rem;
+  color: #666666;
+  padding: 0 32.5px 0 7.5px;
+  width: 25px;
 }
 
 /* ACCUEIL - SECTION PRINCIPALE = LISTE Restaurants */
@@ -232,6 +254,7 @@ a {
 }
 .restaurant-card__new {
   position: absolute;
+  right: 32px;
   z-index: 2;
   font-family: Roboto, sans-serif;
   text-align: center;
@@ -239,11 +262,10 @@ a {
   font-weight: 500;
   line-height: 29px;
   width: 81px;
+  margin-top: -170px;
   border-radius: 2px;
   background-color: #99E2D0;
   color: #278870;
-  right: 32px;
-  margin-top: 12px;
 }
 .restaurant-card__info {
   display: grid;
@@ -300,10 +322,6 @@ a {
   padding: 0 20px 33px 20px;
   background-color: #F6F6F6;
 }
-.main.menu-page {
-  display: grid;
-  grid-template-areas: "starters-section" "plates-section" "desserts-section";
-}
 .main-header {
   margin: 0 -20px;
 }
@@ -349,98 +367,150 @@ a {
   font-weight: 100;
 }
 
-.starters-section__item-1, .plates-section__item-1, .desserts-section__item-1 {
-  grid-area: menu-item-1;
+.menu-form {
   display: grid;
-  grid-template-areas: "item-heading ." "item-complement item-price";
+  grid-template-areas: "starters-section" "plates-section" "desserts-section";
 }
 
-.starters-section__item-2, .plates-section__item-2, .desserts-section__item-2 {
-  grid-area: menu-item-2;
-  display: grid;
-  grid-template-areas: "item-heading ." "item-complement item-price";
+.starters-section__heading {
+  grid-area: starters-section__heading;
+}
+.starters-section__label-1 {
+  grid-area: starters-section__label-1;
+}
+.starters-section__label-2 {
+  grid-area: starters-section__label-2;
+}
+.starters-section__label-3 {
+  grid-area: starters-section__label-3;
+}
+.starters-section__label-4 {
+  grid-area: starters-section__label-4;
 }
 
-.starters-section__item-3, .plates-section__item-3, .desserts-section__item-3 {
-  grid-area: menu-item-3;
-  display: grid;
-  grid-template-areas: "item-heading ." "item-complement item-price";
+.plates-section__heading {
+  grid-area: plates-section__heading;
+}
+.plates-section__label-1 {
+  grid-area: plates-section__label-1;
+}
+.plates-section__label-2 {
+  grid-area: plates-section__label-2;
+}
+.plates-section__label-3 {
+  grid-area: plates-section__label-3;
+}
+
+.desserts-section__heading {
+  grid-area: desserts-section__heading;
+}
+.desserts-section__label-1 {
+  grid-area: desserts-section__label-1;
+}
+.desserts-section__label-2 {
+  grid-area: desserts-section__label-2;
+}
+.desserts-section__label-3 {
+  grid-area: desserts-section__label-3;
 }
 
 .menu-section {
-  display: grid;
-  grid-template-areas: "menu-heading" "menu-item-1" "menu-item-2" "menu-item-3";
-  grid-template-rows: 64px repeat(3, 68px);
-  row-gap: 13px;
+  border: none;
 }
-.menu-section h2 {
-  grid-area: menu-heading;
+.menu-section.starters-section {
+  grid-area: starters-section;
+  display: grid;
+  grid-template-areas: "starters-section__heading" "starters-section__label-1" "starters-section__label-2" "starters-section__label-3";
+  row-gap: 14px;
+}
+.menu-section.starters-section.special {
+  grid-area: starters-section;
+  display: grid;
+  grid-template-areas: "starters-section__heading" "starters-section__label-1" "starters-section__label-2" "starters-section__label-3" "starters-section__label-4";
+  row-gap: 14px;
+}
+.menu-section.plates-section {
+  grid-area: plates-section;
+  display: grid;
+  grid-template-areas: "plates-section__heading" "plates-section__label-1" "plates-section__label-2" "plates-section__label-3";
+  row-gap: 14px;
+}
+.menu-section.desserts-section {
+  grid-area: desserts-section;
+  display: grid;
+  grid-template-areas: "desserts-section__heading" "desserts-section__label-1" "desserts-section__label-2" "desserts-section__label-3";
+  row-gap: 14px;
+}
+.menu-section__heading {
   font-family: Roboto, sans-serif;
-  display: inline;
   font-size: 1.5rem;
   font-weight: 400;
   text-transform: uppercase;
   padding-top: 34px;
   line-height: 30px;
+  height: 67px;
 }
-.menu-section h2::after {
+.menu-section__heading::after {
   display: block;
   content: "";
   height: 0;
   width: 40px;
   border-bottom: 3px solid #99E2D0;
 }
-.menu-section div {
+.menu-section__label {
   font-family: Roboto, sans-serif;
   font-size: 1.2rem;
   font-weight: 300;
-  height: 68px;
   background-color: #FFFFFF;
   border-radius: 20px;
-  padding: 10px;
   box-shadow: 0 5px 10px silver;
   cursor: pointer;
 }
-.menu-section h3 {
+.menu-section input {
+  display: none;
+}
+.menu-section__item {
+  display: grid;
+  grid-template-areas: "item-heading ." "item-complement item-price";
+  padding: 10px;
+}
+.menu-section__item-heading {
   grid-area: item-heading;
-  line-height: 25px;
+  line-height: 24px;
   font-size: 1.7rem;
   font-weight: 600;
 }
 @media (max-width: 360px) {
-  .menu-section h3 {
+  .menu-section__item-heading {
     font-size: 1.45rem;
   }
 }
-.menu-section span {
+.menu-section__item-complement {
   grid-area: item-complement;
   font-size: 1.4rem;
   font-weight: 300;
-  line-height: 25px;
-  margin-bottom: 3px;
+  line-height: 24px;
 }
 @media (max-width: 360px) {
-  .menu-section span {
+  .menu-section__item-complement {
     font-size: 1.2rem;
   }
 }
-.menu-section p {
+.menu-section__item-price {
   grid-area: item-price;
   font-size: 1.4rem;
   font-weight: 500;
-  line-height: 25px;
+  line-height: 24px;
   text-align: right;
   padding-right: 10px;
 }
 @media (max-width: 360px) {
-  .menu-section p {
+  .menu-section__item-price {
     font-size: 1.2rem;
   }
 }
-
-.starters-section__item-4 {
-  display: grid;
-  grid-template-areas: "item-heading ." "item-complement item-price";
+.menu-section-checkbox {
+  display: none;
 }
 
 /* BOUTON COMMANDE */
@@ -452,15 +522,15 @@ a {
   line-height: 50px;
   border: none;
   border-radius: 25px;
-  background: linear-gradient(160deg, #FF79DA 10%, #9356DC 75%);
-  box-shadow: 5px 5px 10px silver;
+  background: linear-gradient(to top left, #9356DC 10%, #FF79DA 75%);
+  box-shadow: 1px 3px 5px silver;
   width: 186px;
   justify-self: center;
   margin: 50px 0;
 }
 .main__button:hover {
-  box-shadow: 5px 5px 15px 10px silver;
-  background: linear-gradient(160deg, #ff93e1 10%, #a16be0 75%);
+  box-shadow: 2px 5px 5px 1px silver;
+  background: linear-gradient(to top left, #ae80e5 10%, #fface8 75%);
 }
 
 /* FOOTER */
@@ -489,7 +559,7 @@ a {
   height: 15px;
   width: 15px;
   font-size: 1.5rem;
-  margin-right: 10px;
+  padding-right: 25px;
 }
 .footer__list-link {
   font-size: 1.6rem;
