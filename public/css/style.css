@@ -30,6 +30,7 @@ a {
   color: #000000;
 }
 
+/* LOADING SPINNER */
 /* HEADER */
 .header {
   display: flex;
@@ -316,42 +317,41 @@ a {
   line-height: 20px;
   padding-bottom: 5px;
 }
-
-.restaurant-card__like.restaurant-card__icon--empty {
-  grid-area: restaurant-card__like;
-  justify-self: center;
+.restaurant-card__icon.heart-icon__empty {
   border: none;
-  background-color: #ffffff;
-  padding: 0 11px;
-  cursor: pointer;
   font-size: 2.5rem;
   font-weight: 100;
-  line-height: 53px;
-  transition: all 0.6s;
-}
-.restaurant-card__like.restaurant-card__icon--full {
-  grid-area: restaurant-card__like;
-  justify-self: center;
-  border: none;
+  cursor: pointer;
+  color: #000000;
+  background-color: #ffffff;
   padding: 0 11px;
+  line-height: 53px;
+}
+.restaurant-card__icon.heart-icon__full {
+  position: absolute;
+  border: none;
   cursor: pointer;
   font-size: 2.5rem;
-  line-height: 53px;
   color: transparent;
+  right: 32px;
+  padding: 0 11px;
+  line-height: 53px;
 }
-
-.restaurant-card__icon--full:hover .restaurant-card__icon--empty {
-  transition: all 0.6s !important;
-  opacity: 1 !important;
-  color: #9356dc !important;
+.restaurant-card__like {
+  grid-area: restaurant-card__like;
 }
-.restaurant-card__icon--empty:hover .restaurant-card__icon--full {
-  background: linear-gradient(to top, #ff79da 30%, #9356dc 70%);
+.restaurant-card__like:hover .heart-icon__empty {
+  transition: opacity 200ms;
+  transition-delay: 300ms;
+  opacity: 0;
+}
+.restaurant-card__like:hover .heart-icon__full {
+  background: linear-gradient(to top, #ff79da 20%, #9356dc 70%);
   -webkit-background-clip: text;
   background-size: 100% 100%;
   background-position: bottom;
   background-repeat: no-repeat;
-  animation: heart-filling 0.6s linear;
+  animation: heart-filling 600ms linear;
 }
 
 /* PAGES MENU - MAIN */
@@ -363,7 +363,7 @@ a {
 
 /* PAGES MENU - MAIN - Header */
 .main {
-  padding: 0 20px 33px 20px;
+  padding: 0 12px 33px 14px;
   background-color: #f6f6f6;
 }
 .main-header {
@@ -374,41 +374,56 @@ a {
   object-fit: cover;
   margin-bottom: -37px;
 }
-.main-header__heading {
-  font-family: Shrikhand, sans-serif;
+.main-header__menu-header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f6f6f6;
+  border-radius: 37px 37px 0 0;
   position: relative;
   z-index: 10;
+  padding: 37px 37px 0 26px;
+}
+.main-header__restaurant-name {
+  font-family: Shrikhand, sans-serif;
   font-size: 2.7rem;
   font-weight: 700;
   line-height: 25px;
-  padding: 37px 20px 0 20px;
-  border-radius: 37px 37px 0 0;
-  background-color: #f6f6f6;
 }
 @media (max-width: 360px) {
-  .main-header__heading {
+  .main-header__restaurant-name {
     font-size: 2.3rem;
   }
 }
-.main-header__icon.main-header__like--empty {
-  position: absolute;
-  z-index: 10;
-  right: 35px;
-  margin-top: -25px;
+.main-header__icon.heart-icon__empty {
   border: none;
-  background-color: #f6f6f6;
   font-size: 2.5rem;
   font-weight: 100;
+  cursor: pointer;
+  color: #000000;
+  background-color: #f6f6f6;
+  line-height: 25px;
 }
-.main-header__icon.main-header__like--full {
+.main-header__icon.heart-icon__full {
   position: absolute;
-  z-index: 10;
-  right: 35px;
-  margin-top: -25px;
   border: none;
-  background-color: #f6f6f6;
+  cursor: pointer;
   font-size: 2.5rem;
-  font-weight: 100;
+  color: transparent;
+  right: 37px;
+  line-height: 25px;
+}
+.main-header__like:hover .heart-icon__empty {
+  transition: opacity 200ms;
+  transition-delay: 300ms;
+  opacity: 0;
+}
+.main-header__like:hover .heart-icon__full {
+  background: linear-gradient(to top, #ff79da 20%, #9356dc 70%);
+  -webkit-background-clip: text;
+  background-size: 100% 100%;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  animation: heart-filling 600ms linear;
 }
 
 .menu-form {
@@ -510,7 +525,7 @@ a {
   font-size: 1.5rem;
   font-weight: 400;
   text-transform: uppercase;
-  padding-top: 34px;
+  padding: 34px 0 0 6px;
   line-height: 30px;
   height: 67px;
 }
@@ -596,16 +611,17 @@ a {
 }
 .menu-section__checkbox-icon.fas {
   color: #ffffff;
-  font-size: 1.6rem;
+  font-size: 2rem;
+  padding: 24px 20px;
   transform: rotate(-270deg);
   transition: transform 550ms;
   transition-delay: 200ms;
 }
 
-.menu-section__label:hover .menu-section__checkbox-icon.fas {
+.menu-section__label:active .menu-section__checkbox-icon.fas {
   transform: rotate(0deg);
 }
-.menu-section__label:hover .menu-section__label-items {
+.menu-section__label:active .menu-section__label-items {
   width: 100%;
 }
 

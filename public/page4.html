@@ -17,6 +17,9 @@
     </head>
 
     <body>
+        <!-- LOADING SPINNER -->
+        <div class="loading-spinner">
+        </div>
         <!-- HEADER -->
         <header class="header menu-page">
             <a href="index.html" class="header__link menu-page"><i class="header__arrow fas fa-arrow-left"></i></a>
@@ -28,13 +31,19 @@
 
             <!-- EN-TETE PARTIE PRINCIPALE -->
             <header class="main-header">
+                <section>
                 <img src="./images/restaurants/louis-hansel-shotsoflouis-qNBGVyOCY8Q-unsplash.jpg"
                      alt="plat restaurant gastronomique"
                      class="main-header__img"
                 />
-                <h1 class="main-header__heading">Le délice des sens</h1>
-                <i class="main-header__icon main-header__like--empty far fa-heart"></i>
-                <i class="main-header__icon main-header__like--full far fa-heart"></i>
+                </section>
+                <section class="main-header__menu-header">
+                <h1 class="main-header__restaurant-name">Le délice des sens</h1>
+                <div class="main-header__like">
+                    <i class="main-header__icon heart-icon__empty far fa-heart"></i>
+                    <i class="main-header__icon heart-icon__full fas fa-heart"></i>
+                </div>
+                </section>
             </header>
 
             <form class="menu-form" method="post" action="#">

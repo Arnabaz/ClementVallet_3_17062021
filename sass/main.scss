@@ -63,8 +63,36 @@ $counter: 1, 2, 3, 4;
     }
 }
 
-@mixin heart {
-}
+@mixin heart-description-empty {
+    border: none;
+    font-size: 2.5rem;
+    font-weight: 100;
+    cursor: pointer;
+    color:#000000;
+        }
+
+@mixin heart-description-full {
+            position: absolute;
+            border: none;
+    cursor: pointer;
+    font-size: 2.5rem;
+    color: transparent;
+        }
+
+@mixin heart-empty-hover {
+                transition: opacity 200ms;
+                transition-delay: 300ms;
+                opacity: 0;
+            }
+
+@mixin heart-full-hover {
+                background: linear-gradient(to top, $color-secondary 20%, $color-primary 70%);
+                -webkit-background-clip: text;
+                background-size: 100% 100%;
+                background-position: bottom;
+                background-repeat: no-repeat;
+                animation: heart-filling 600ms linear;
+            }
 
 //Mixins - Grid
 @mixin grid-layout($grid-template-areas) {
@@ -135,6 +163,11 @@ body {
 a {
     text-decoration: none;
     color: #000000;
+}
+
+/* LOADING SPINNER */
+.loading-spinner {
+    
 }
 
 /* HEADER */
@@ -380,54 +413,31 @@ a {
             line-height: 20px;
             padding-bottom: 5px;
         }
-    }
-}
 
-.restaurant-card__like.restaurant-card__icon {
-    &--empty {
-        grid-area: restaurant-card__like;
-        justify-self: center;
-        border: none;
-        background-color: #ffffff;
-        padding: 0 11px;
-        cursor: pointer;
-        font-size: 2.5rem;
-        font-weight: 100;
-        line-height: 53px;
-        transition: all 0.6s;
-    }
-
-    &--full {
-        grid-area: restaurant-card__like;
-        justify-self: center;
-        border: none;
-        padding: 0 11px;
-        cursor: pointer;
-        font-size: 2.5rem;
-        line-height: 53px;
-        color: transparent;
-    }
-}
-
-.restaurant-card__icon {
-    &--full:hover {
-        .restaurant-card__icon {
-            &--empty {
-                transition: all 0.6s !important;
-                opacity: 1 !important;
-                color: $color-primary !important;
+        &__icon {
+            &.heart-icon__empty {
+                @include heart-description-empty;
+                background-color: #ffffff;
+                padding: 0 11px;
+                line-height: 53px;
+            }
+            &.heart-icon__full {
+                @include heart-description-full;
+                right:32px;
+                padding: 0 11px;
+                line-height: 53px;
             }
         }
-    }
-    &--empty:hover {
-        .restaurant-card__icon {
-            &--full {
-                background: linear-gradient(to top, $color-secondary 30%, $color-primary 70%);
-                -webkit-background-clip: text;
-                background-size: 100% 100%;
-                background-position: bottom;
-                background-repeat: no-repeat;
-                animation: heart-filling 0.6s linear;
+
+        &__like {
+            grid-area: restaurant-card__like;
+            &:hover {
+                .heart-icon__empty {
+                    @include heart-empty-hover;
+                }
+                .heart-icon__full {
+                    @include heart-full-hover;
+                }
             }
         }
     }
@@ -442,11 +452,12 @@ a {
 
 /* PAGES MENU - MAIN - Header */
 .main {
-    padding: 0 20px 33px 20px;
+    padding: 0 12px 33px 14px;
     background-color: $bgc-primary;
 
     &.menu-page {
     }
+
     &-header {
         margin: 0 -20px;
 
@@ -455,41 +466,51 @@ a {
             object-fit: cover;
             margin-bottom: -37px;
         }
-        &__heading {
-            @include font-family(logo, default);
+
+        &__menu-header {
+            display: flex;
+            justify-content: space-between;
+            background-color: $bgc-primary;
+            border-radius: 37px 37px 0 0;
             position: relative;
             z-index: 10;
+            padding: 37px 37px 0 26px;
+        }
+
+        &__restaurant-name {
+            @include font-family(logo, default);
             font-size: 2.7rem;
             font-weight: 700;
             line-height: 25px;
-            padding: 37px 20px 0 20px;
-            border-radius: 37px 37px 0 0;
-            background-color: $bgc-primary;
             @media (max-width: map-get($breakpoints, mobile-1)) {
                 font-size: 2.3rem;
             }
         }
 
-        &__icon.main-header__like--empty {
-            position: absolute;
-            z-index: 10;
-            right: 35px;
-            margin-top: -25px;
-            border: none;
-            background-color: $bgc-primary;
-            font-size: 2.5rem;
-            font-weight: 100;
+        &__icon {
+            &.heart-icon__empty {
+                @include heart-description-empty;
+                background-color: $bgc-primary;
+                line-height: 25px;
+            }
+
+            &.heart-icon__full {
+                @include heart-description-full;
+                right: 37px;
+                line-height: 25px;
+            }
         }
 
-        &__icon.main-header__like--full {
-            position: absolute;
-            z-index: 10;
-            right: 35px;
-            margin-top: -25px;
-            border: none;
-            background-color: $bgc-primary;
-            font-size: 2.5rem;
-            font-weight: 100;
+        &__like {
+            &:hover {
+                .heart-icon__empty {
+                    @include heart-empty-hover;
+                }
+
+                .heart-icon__full {
+                    @include heart-full-hover;
+                }
+            }
         }
     }
 }
@@ -608,7 +629,7 @@ a {
         font-size: 1.5rem;
         font-weight: 400;
         text-transform: uppercase;
-        padding-top: 34px;
+        padding: 34px 0 0 6px;
         line-height: 30px;
         height: 67px;
 
@@ -694,7 +715,8 @@ a {
         margin: -10px -10px -10px 0;
         &-icon.fas {
             color: #ffffff;
-            font-size: 1.6rem;
+            font-size: 2rem;
+            padding: 24px 20px;
             transform: rotate(-270deg);
             transition: transform 550ms;
             transition-delay: 200ms;
@@ -703,19 +725,15 @@ a {
 }
 
 .menu-section__label {
-    &:hover {
+    &:active {
         .menu-section__checkbox {
-
             &-icon.fas {
                 transform: rotate(0deg);
-
-
             }
         }
-
-.menu-section__label-items {
-width: 100%;
-}
+        .menu-section__label-items {
+            width: 100%;
+        }
     }
 }
 
