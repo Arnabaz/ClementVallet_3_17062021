@@ -2,644 +2,767 @@
 
 // VARIABLES
 //Variables - Couleurs
-$color-primary: #9356DC;
-$color-secondary: #FF79DA;
-$color-tertiary: #99E2D0;
-$bgc-primary: #F6F6F6;
+$color-primary: #9356dc;
+$color-secondary: #ff79da;
+$color-tertiary: #99e2d0;
+$bgc-primary: #f6f6f6;
 
 //Variables - Polices
 $font: (
-  text: Roboto,
-  logo: Shrikhand,
-  default: sans-serif
+    text: Roboto,
+    logo: Shrikhand,
+    default: sans-serif,
 );
 
 //Variables - Media queries
 $breakpoints: (
-        mobile-1: 360px
+    mobile-1: 360px,
 );
 
 //Variables - Grid
-$grid-ta__restaurant-section: ("restaurants""restaurant-card-1""restaurant-card-2""restaurant-card-3""restaurant-card-4");
-$grid-ta__menu-page: ("starters-section""plates-section""desserts-section");
-$grid-ta__starters-section: ("starters-section__heading""starters-section__label-1""starters-section__label-2""starters-section__label-3");
-$grid-ta__plates-section: ("plates-section__heading""plates-section__label-1""plates-section__label-2""plates-section__label-3");
-$grid-ta__desserts-section: ("desserts-section__heading""desserts-section__label-1""desserts-section__label-2""desserts-section__label-3");
-$grid-ta__menu-item: ("item-heading .""item-complement item-price");
+$grid-ta__restaurant-section: (
+    "restaurants" "restaurant-card-1" "restaurant-card-2" "restaurant-card-3"
+        "restaurant-card-4"
+);
+$grid-ta__menu-page: ("starters-section" "plates-section" "desserts-section");
+$grid-ta__menu-label: ("label-heading ." "label-complement label-price");
 
 //Variables - Special
 $counter: 1, 2, 3, 4;
 
 // MIXINS
 //Mixins - Font
-@mixin font-family ($font-primary, $font-secondary){
-  $font-primary: map-get($font, $font-primary);
-  $font-secondary: map-get($font, $font-secondary);
-  font-family: $font-primary, $font-secondary;
+@mixin font-family($font-primary, $font-secondary) {
+    $font-primary: map-get($font, $font-primary);
+    $font-secondary: map-get($font, $font-secondary);
+    font-family: $font-primary, $font-secondary;
 }
 @mixin button-description {
-  @include font-family(text, default);
-  font-size: 1.6rem;
-  font-weight: 400;
-  color: #FFFFFF;
-  line-height: 50px;
-  border: none;
-  border-radius: 25px;
-  background: linear-gradient(to top left, $color-primary 10%, $color-secondary 75%);
-  box-shadow: 1px 3px 5px silver;
+    @include font-family(text, default);
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 50px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(
+        to top left,
+        $color-primary 10%,
+        $color-secondary 75%
+    );
+    box-shadow: 1px 3px 5px silver;
 }
 @mixin button-hover {
-  &:hover {
-    box-shadow: 2px 5px 5px 1px silver;
-    background: linear-gradient(to top left, lighten($color-primary, 10%) 10%, lighten($color-secondary, 10%) 75%);
-  }
+    &:hover {
+        box-shadow: 2px 5px 5px 1px silver;
+        background: linear-gradient(
+            to top left,
+            lighten($color-primary, 10%) 10%,
+            lighten($color-secondary, 10%) 75%
+        );
+    }
 }
 
-@mixin heart {}
+@mixin heart {
+}
 
 //Mixins - Grid
-@mixin grid-layout ($grid-template-areas) {
-  display: grid;
-  grid-template-areas: $grid-template-areas;
+@mixin grid-layout($grid-template-areas) {
+    display: grid;
+    grid-template-areas: $grid-template-areas;
 }
 
 @mixin process-section__card {
-  @for $counter from 1 through 3 {
-    .process-section__card-#{$counter} {
-      grid-area: process-section__card-#{$counter};
-      &::before {
-        display: inline-block;
-        @include font-family(text, default);
-        font-size: 1.2rem;
-        font-weight: 400;
-        position: relative;
-        content: "#{$counter}";
-        top: -2.5px;
-        left: calc(-25px / 2);
-        margin: 24px 0;
-        color: #FFFFFF;
-        background-color: $color-primary;
-        border-radius: 25px;
-        line-height: 25px;
-        width: 25px;
-        height: 25px;
-        text-align: center;
-      }
-      }
+    @for $counter from 1 through 3 {
+        .process-section__card-#{$counter} {
+            grid-area: process-section__card-#{$counter};
+            &::before {
+                display: inline-block;
+                @include font-family(text, default);
+                font-size: 1.2rem;
+                font-weight: 400;
+                position: relative;
+                content: "#{$counter}";
+                top: -2.5px;
+                left: calc(-25px / 2);
+                margin: 24px 0;
+                color: #ffffff;
+                background-color: $color-primary;
+                border-radius: 25px;
+                line-height: 25px;
+                width: 25px;
+                height: 25px;
+                text-align: center;
+            }
+        }
     }
-  }
+}
 
-  // Fonctions
+@keyframes heart-filling {
+    0% {
+        background-size: 100% 0;
+    }
+    100% {
+        background-size: 100% 100%;
+    }
+}
 
-  // Placeholders
+@keyframes menu-animation {
+    0% {
+        opacity: 0;
+        transform: translateY(5rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
 
-  // Contenu général
-  :root {
+// Fonctions
+
+// Placeholders
+
+// Contenu général
+:root {
     font-size: 10px;
     line-height: 1;
-  }
+}
 
-  body {
+body {
     line-height: 1;
-  }
+}
 
-  a {
+a {
     text-decoration: none;
     color: #000000;
-  }
+}
 
-  /* HEADER */
-  .header {
+/* HEADER */
+.header {
     display: flex;
     padding: 17.25px 0;
     align-items: center;
     justify-content: center;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     box-shadow: 0 0 15px silver;
     position: relative;
     z-index: 2;
 
     &__link {
-      &.menu-page {
-        position: absolute;
-        left: 20px;
-      }
+        &.menu-page {
+            position: absolute;
+            left: 20px;
+        }
     }
 
     &__heading {
-      @include font-family(logo, default);
-      font-size: 3rem;
-      line-height: 28.5px;
-
-      &.menu-page {
         @include font-family(logo, default);
         font-size: 3rem;
         line-height: 28.5px;
-        user-select: none;
-      }
+
+        &.menu-page {
+            @include font-family(logo, default);
+            font-size: 3rem;
+            line-height: 28.5px;
+            user-select: none;
+        }
     }
 
     &__arrow {
-      font-size: 1.8rem;
-      color: #000000;
+        font-size: 1.8rem;
+        color: #000000;
     }
-  }
+}
 
-  /* ACCUEIL - SECTION de RECHERCHE */
-  .search-section {
+/* ACCUEIL - SECTION de RECHERCHE */
+.search-section {
     background-color: $bgc-primary;
 
     &__form {
-      text-align: center;
-
-      &-label {
-      }
-
-      &-icon.fas {
-        font-size: 1.5rem;
-        line-height: 50px;
-      }
-
-      &-input {
-        border: none;
-        @include font-family(text, default);
-        font-size: 1.6rem;
-        font-weight: 500;
-        line-height: 48px;
         text-align: center;
-        width: 40%;
-        margin-top: 2px;
 
-        &::placeholder {
-          @include font-family(text, default);
-          font-size: 1.6rem;
-          font-weight: 500;
-          color: black;
+        &-top {
+            background-color: darken($bgc-primary, 5%);
         }
 
-        &:focus {
-          outline: 2px solid $color-primary;
-          color: darken($color-primary, 20%);
-          background-color: $bgc-primary;
+        &-label {
         }
-      }
 
-      &-heading {
-        @include font-family(text, default);
-        font-size: 2.2rem;
-        font-weight: 700;
-      }
+        &-icon.fas {
+            font-size: 1.5rem;
+            line-height: 50px;
+        }
 
-      &-description {
-        @include font-family(text, default);
-        font-size: 1.6rem;
-        font-weight: 300;
-      }
+        &-input {
+            border: none;
+            background-color: darken($bgc-primary, 5%);
+            @include font-family(text, default);
+            font-size: 1.6rem;
+            font-weight: 500;
+            line-height: 48px;
+            text-align: center;
+            width: 40%;
+            margin-top: 2px;
 
-      &-button {
-        @include button-description;
-        width: 218px;
-        @include button-hover;
-      }
+            &::placeholder {
+                @include font-family(text, default);
+                font-size: 1.6rem;
+                font-weight: 500;
+            }
+
+            &:focus {
+                outline: 2px solid $color-primary;
+                color: darken($color-primary, 20%);
+                background-color: $bgc-primary;
+            }
+        }
+
+        &-heading {
+            @include font-family(text, default);
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 25px;
+            padding: 40px 65px 20px 65px;
+        }
+
+        &-description {
+            @include font-family(text, default);
+            font-size: 1.6rem;
+            font-weight: 300;
+            line-height: 20px;
+            padding: 0 20px 30px 20px;
+        }
+
+        &-button {
+            @include button-description;
+            padding: 0 50px;
+            margin-bottom: 57px;
+            @include button-hover;
+        }
     }
-  }
+}
 
-  /* ACCUEIL - SECTION Process */
-  .process-section {
-    background-color: #FFFFFF;
+/* ACCUEIL - SECTION Process */
+@include process-section__card;
+.process-section {
+    background-color: #ffffff;
     padding-top: 50px;
     padding-right: 20px;
-    padding-bottom: 68px;
+    padding-bottom: 66px;
     padding-left: calc((25px / 2) + 20px);
 
-    &__header {
-      padding-bottom: 6px;
-    }
-
     &__heading {
-      @include font-family(text, default);
-      font-size: 2rem;
-      font-weight: 500;
-      line-height: 25px;
-      color: black;
+        @include font-family(text, default);
+        font-size: 2rem;
+        font-weight: 500;
+        line-height: 25px;
+        padding-bottom: 30px;
+        color: black;
     }
 
     &__list {
-      display: grid;
-      grid-template-areas: "process-section__card-1""process-section__card-2""process-section__card-3";
-      row-gap: 24px;
+        display: grid;
+        grid-template-areas: "process-section__card-1" "process-section__card-2" "process-section__card-3";
+        row-gap: 24px;
     }
-    @include process-section__card;
 
     &__card {
-      background-color: $bgc-primary;
-      border-radius: 20px;
-      box-shadow: 0 5px 10px silver;
-      @include font-family(text, default);
-      font-size: 1.6rem;
-      font-weight: 600;
-      user-select: none;
+        background-color: $bgc-primary;
+        border-radius: 20px;
+        box-shadow: 0 5px 10px silver;
+        @include font-family(text, default);
+        font-size: 1.6rem;
+        font-weight: 600;
+        user-select: none;
 
-      &.process-section__card-3 {
-        background-color: #F5EDFF;
-      }
+        &.process-section__card-3 {
+            background-color: #f5edff;
+        }
 
-      &.process-section__card-3 .process-section__card-icon {
-        color: $color-primary;
-      }
+        &.process-section__card-3 .process-section__card-icon {
+            color: $color-primary;
+        }
 
-      &-icon.fas {
-        line-height: 25px;
-        font-size: 1.5rem;
-        color: lighten(#000000, 40%);
-        padding: 0 32.5px 0 7.5px;
-        width: 25px;
-      }
+        &-icon.fas {
+            line-height: 25px;
+            font-size: 1.5rem;
+            color: lighten(#000000, 40%);
+            padding: 0 32.5px 0 7.5px;
+            width: 25px;
+        }
     }
-  }
+}
 
-  /* ACCUEIL - SECTION PRINCIPALE = LISTE Restaurants */
-  .restaurant {
+/* ACCUEIL - SECTION PRINCIPALE = LISTE Restaurants */
+.restaurant {
     grid-area: restaurants;
 
     &-section {
-      background-color: $bgc-primary;
-      @include grid-layout($grid-ta__restaurant-section);
-      row-gap: 18px;
-      padding: 58px 20px 64px 20px;
+        background-color: $bgc-primary;
+        @include grid-layout($grid-ta__restaurant-section);
+        row-gap: 18px;
+        padding: 58px 20px 64px 20px;
     }
 
     &__heading {
-      @include font-family(text, default);
-      line-height: 20px;
-      font-size: 2.4rem;
-      font-weight: 700;
-      padding-bottom: 8px;
+        @include font-family(text, default);
+        line-height: 20px;
+        font-size: 2.4rem;
+        font-weight: 700;
+        padding-bottom: 8px;
     }
 
     &-card {
-      background-color: #FFFFFF;
-      border-radius: 20px;
-      box-shadow: 1px 3px 8px 1px silver;
-      cursor: pointer;
-
-      &.restaurant-card-1 {
-        grid-area: restaurant-card-1;
-      }
-
-      &.restaurant-card-2 {
-        grid-area: restaurant-card-2;
-      }
-
-      &.restaurant-card-3 {
-        grid-area: restaurant-card-3;
-      }
-
-      &.restaurant-card-4 {
-        grid-area: restaurant-card-4;
-      }
-
-      &__img {
-        height: 174px;
-        object-fit: cover;
-        border-radius: 15px 15px 0 0;
-      }
-
-      &__new {
-        position: absolute;
-        right: 32px;
-        z-index: 2;
-        @include font-family(text, default);
-        text-align: center;
-        font-size: 1.4rem;
-        font-weight: 500;
-        line-height: 29px;
-        width: 81px;
-        margin-top: -170px;
-        border-radius: 2px;
-        background-color: $color-tertiary;
-        color: darken($color-tertiary, 40%);
-      }
-
-      &__info {
-        display: grid;
-        grid-template-areas:
-  "restaurant-card__name . restaurant-card__like"
-  "restaurant-card__place . restaurant-card__like";
-        grid-template-columns: auto 1fr auto;
-        padding: 12px;
-      }
-
-      &__name {
-        grid-area: restaurant-card__name;
-        @include font-family(text, default);
-        font-size: 1.7rem;
-        font-weight: 800;
-        line-height: 25px;
-        padding-top: 3px;
-      }
-
-      &__place {
-        grid-area: restaurant-card__place;
-        @include font-family(text, default);
-        font-size: 1.6rem;
-        font-weight: 300;
-        line-height: 20px;
-        padding-bottom: 5px;
-      }
-
-      &__like.restaurant-card__icon--empty {
-        grid-area: restaurant-card__like;
-        justify-self: center;
-        border: none;
-        background-color: #FFFFFF;
-        padding: 0 11px;
+        background-color: #ffffff;
+        border-radius: 20px;
+        box-shadow: 1px 3px 8px 1px silver;
         cursor: pointer;
-        font-size: 2.5rem;
-        font-weight: 100;
-        line-height: 53px;
-      }
 
-      &__like.restaurant-card__icon--full {
-        grid-area: restaurant-card__like;
-        justify-self: center;
-        border: none;
-        background-color: #FFFFFF;
-        padding: 0 11px;
-        cursor: pointer;
-        font-size: 2.5rem;
-        font-weight: 100;
-        line-height: 53px;
-      }
+        &.restaurant-card-1 {
+            grid-area: restaurant-card-1;
+        }
+
+        &.restaurant-card-2 {
+            grid-area: restaurant-card-2;
+        }
+
+        &.restaurant-card-3 {
+            grid-area: restaurant-card-3;
+        }
+
+        &.restaurant-card-4 {
+            grid-area: restaurant-card-4;
+        }
+
+        &__img {
+            height: 174px;
+            object-fit: cover;
+            border-radius: 15px 15px 0 0;
+        }
+
+        &__new {
+            position: absolute;
+            right: 32px;
+            z-index: 2;
+            @include font-family(text, default);
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 500;
+            line-height: 29px;
+            width: 81px;
+            margin-top: -170px;
+            border-radius: 2px;
+            background-color: $color-tertiary;
+            color: darken($color-tertiary, 40%);
+        }
+
+        &__info {
+            display: grid;
+            grid-template-areas: "restaurant-card__name . restaurant-card__like" "restaurant-card__place . restaurant-card__like";
+            grid-template-columns: auto 1fr auto;
+            padding: 12px;
+        }
+
+        &__name {
+            grid-area: restaurant-card__name;
+            @include font-family(text, default);
+            font-size: 1.7rem;
+            font-weight: 800;
+            line-height: 25px;
+            padding-top: 3px;
+        }
+
+        &__place {
+            grid-area: restaurant-card__place;
+            @include font-family(text, default);
+            font-size: 1.6rem;
+            font-weight: 300;
+            line-height: 20px;
+            padding-bottom: 5px;
+        }
     }
-  }
+}
 
-  /* PAGES MENU - MAIN */
-  .starters-section__item-price, .plates-section__item-price, .desserts-section__item-price {
+.restaurant-card__like.restaurant-card__icon {
+    &--empty {
+        grid-area: restaurant-card__like;
+        justify-self: center;
+        border: none;
+        background-color: #ffffff;
+        padding: 0 11px;
+        cursor: pointer;
+        font-size: 2.5rem;
+        font-weight: 100;
+        line-height: 53px;
+        transition: all 0.6s;
+    }
+
+    &--full {
+        grid-area: restaurant-card__like;
+        justify-self: center;
+        border: none;
+        padding: 0 11px;
+        cursor: pointer;
+        font-size: 2.5rem;
+        line-height: 53px;
+        color: transparent;
+    }
+}
+
+.restaurant-card__icon {
+    &--full:hover {
+        .restaurant-card__icon {
+            &--empty {
+                transition: all 0.6s !important;
+                opacity: 1 !important;
+                color: $color-primary !important;
+            }
+        }
+    }
+    &--empty:hover {
+        .restaurant-card__icon {
+            &--full {
+                background: linear-gradient(to top, $color-secondary 30%, $color-primary 70%);
+                -webkit-background-clip: text;
+                background-size: 100% 100%;
+                background-position: bottom;
+                background-repeat: no-repeat;
+                animation: heart-filling 0.6s linear;
+            }
+        }
+    }
+}
+
+/* PAGES MENU - MAIN */
+.starters-section__label-price,
+.plates-section__label-price,
+.desserts-section__label-price {
     display: inline-block;
-  }
+}
 
-  /* PAGES MENU - MAIN - Header */
-  .main {
+/* PAGES MENU - MAIN - Header */
+.main {
     padding: 0 20px 33px 20px;
     background-color: $bgc-primary;
 
     &.menu-page {
     }
     &-header {
-      margin: 0 -20px;
+        margin: 0 -20px;
 
-      &__img {
-        height: 257px;
-        object-fit: cover;
-        margin-bottom: -37px;
-      }
-      &__heading {
-        @include font-family(logo, default);
-        position: relative;
-        z-index: 10;
-        font-size: 2.7rem;
-        font-weight: 700;
-        line-height: 25px;
-        padding: 37px 20px 0 20px;
-        border-radius: 37px 37px 0 0;
-        background-color: $bgc-primary;
-        @media (max-width: map-get($breakpoints, mobile-1)) {
-          font-size: 2.3rem;
+        &__img {
+            height: 257px;
+            object-fit: cover;
+            margin-bottom: -37px;
         }
-      }
+        &__heading {
+            @include font-family(logo, default);
+            position: relative;
+            z-index: 10;
+            font-size: 2.7rem;
+            font-weight: 700;
+            line-height: 25px;
+            padding: 37px 20px 0 20px;
+            border-radius: 37px 37px 0 0;
+            background-color: $bgc-primary;
+            @media (max-width: map-get($breakpoints, mobile-1)) {
+                font-size: 2.3rem;
+            }
+        }
 
-      &__icon.main-header__like--empty {
-        position: absolute;
-        z-index: 10;
-        right: 35px;
-        margin-top: -25px;
-        border: none;
-        background-color: $bgc-primary;
-        font-size: 2.5rem;
-        font-weight: 100;
-      }
+        &__icon.main-header__like--empty {
+            position: absolute;
+            z-index: 10;
+            right: 35px;
+            margin-top: -25px;
+            border: none;
+            background-color: $bgc-primary;
+            font-size: 2.5rem;
+            font-weight: 100;
+        }
 
-      &__icon.main-header__like--full {
-        position: absolute;
-        z-index: 10;
-        right: 35px;
-        margin-top: -25px;
-        border: none;
-        background-color: $bgc-primary;
-        font-size: 2.5rem;
-        font-weight: 100;
-      }
+        &__icon.main-header__like--full {
+            position: absolute;
+            z-index: 10;
+            right: 35px;
+            margin-top: -25px;
+            border: none;
+            background-color: $bgc-primary;
+            font-size: 2.5rem;
+            font-weight: 100;
+        }
     }
-  }
+}
 
-  // Mise en place grille des menus
+// Mise en place grille des menus
 .menu-form {
-  @include grid-layout($grid-ta__menu-page);
+    @include grid-layout($grid-ta__menu-page);
 }
 
 .starters-section {
-  &__heading {
-    grid-area: starters-section__heading;
-  }
-  &__label {
-    &-1 {
-      grid-area: starters-section__label-1;
+    &__heading {
+        grid-area: starters-section__heading;
     }
-    &-2 {
-      grid-area: starters-section__label-2;
+    &__label {
+        &-1 {
+            grid-area: starters-section__label-1;
+            animation: menu-animation 1s both;
+            animation-delay: 100ms;
+        }
+        &-2 {
+            grid-area: starters-section__label-2;
+            animation: menu-animation 1s both;
+            animation-delay: 100ms;
+        }
+        &-3 {
+            grid-area: starters-section__label-3;
+            animation: menu-animation 1s both;
+            animation-delay: 100ms;
+        }
+        &-4 {
+            grid-area: starters-section__label-4;
+            animation: menu-animation 1s both;
+            animation-delay: 100ms;
+        }
     }
-    &-3 {
-      grid-area: starters-section__label-3;
-    }
-    &-4 {
-      grid-area: starters-section__label-4;
-    }
-  }
 }
 
 .plates-section {
-  &__heading {
-    grid-area: plates-section__heading;
-  }
-  &__label {
-    &-1 {
-      grid-area: plates-section__label-1;
+    &__heading {
+        grid-area: plates-section__heading;
     }
-    &-2 {
-      grid-area: plates-section__label-2;
+    &__label {
+        &-1 {
+            grid-area: plates-section__label-1;
+            animation: menu-animation 1s both;
+            animation-delay: 400ms;
+        }
+        &-2 {
+            grid-area: plates-section__label-2;
+            animation: menu-animation 1s both;
+            animation-delay: 400ms;
+        }
+        &-3 {
+            grid-area: plates-section__label-3;
+            animation: menu-animation 1s both;
+            animation-delay: 400ms;
+        }
     }
-    &-3 {
-      grid-area: plates-section__label-3;
-    }
-  }
 }
 .desserts-section {
-  &__heading {
-    grid-area: desserts-section__heading;
-  }
-  &__label {
-    &-1 {
-      grid-area: desserts-section__label-1;
+    &__heading {
+        grid-area: desserts-section__heading;
     }
-    &-2 {
-      grid-area: desserts-section__label-2;
+    &__label {
+        &-1 {
+            grid-area: desserts-section__label-1;
+            animation: menu-animation 1s both;
+            animation-delay: 700ms;
+        }
+        &-2 {
+            grid-area: desserts-section__label-2;
+            animation: menu-animation 1s both;
+            animation-delay: 700ms;
+        }
+        &-3 {
+            grid-area: desserts-section__label-3;
+            animation: menu-animation 1s both;
+            animation-delay: 700ms;
+        }
     }
-    &-3 {
-      grid-area: desserts-section__label-3;
-    }
-  }
 }
-
 
 .menu-section {
     border: none;
 
     &.starters-section {
-      grid-area: starters-section;
-      display: grid;
-      grid-template-areas:"starters-section__heading""starters-section__label-1""starters-section__label-2""starters-section__label-3";
-      row-gap: 14px;
-      &.special {
         grid-area: starters-section;
         display: grid;
-        grid-template-areas:"starters-section__heading""starters-section__label-1""starters-section__label-2""starters-section__label-3""starters-section__label-4";
+        grid-template-areas: "starters-section__heading" "starters-section__label-1" "starters-section__label-2" "starters-section__label-3";
         row-gap: 14px;
-      }
+
+        &.special {
+            grid-area: starters-section;
+            display: grid;
+            grid-template-areas: "starters-section__heading" "starters-section__label-1" "starters-section__label-2" "starters-section__label-3" "starters-section__label-4";
+            row-gap: 14px;
+        }
     }
+
     &.plates-section {
-      grid-area: plates-section;
-      display: grid;
-      grid-template-areas:"plates-section__heading""plates-section__label-1""plates-section__label-2""plates-section__label-3";
-      row-gap: 14px;
+        grid-area: plates-section;
+        display: grid;
+        grid-template-areas: "plates-section__heading" "plates-section__label-1" "plates-section__label-2" "plates-section__label-3";
+        row-gap: 14px;
     }
+
     &.desserts-section {
-      grid-area: desserts-section;
-      display: grid;
-      grid-template-areas:"desserts-section__heading""desserts-section__label-1""desserts-section__label-2""desserts-section__label-3";
-      row-gap: 14px;
+        grid-area: desserts-section;
+        display: grid;
+        grid-template-areas: "desserts-section__heading" "desserts-section__label-1" "desserts-section__label-2" "desserts-section__label-3";
+        row-gap: 14px;
     }
 
     &__heading {
-      @include font-family(text, default);
-      font-size: 1.5rem;
-      font-weight: 400;
-      text-transform: uppercase;
-      padding-top: 34px;
-      line-height: 30px;
-      height: 67px;
-    &::after {
-        display: block;
-        content: "";
-        height: 0;
-        width: 40px;
-        border-bottom: 3px solid $color-tertiary;
-      }
-    }
+        @include font-family(text, default);
+        font-size: 1.5rem;
+        font-weight: 400;
+        text-transform: uppercase;
+        padding-top: 34px;
+        line-height: 30px;
+        height: 67px;
 
-    &__label {
-      @include font-family(text, default);
-      font-size: 1.2rem;
-      font-weight: 300;
-      background-color: #FFFFFF;
-      border-radius: 20px;
-      box-shadow: 0 5px 10px silver;
-      cursor: pointer;
+        &::after {
+            display: block;
+            content: "";
+            height: 0;
+            width: 40px;
+            border-bottom: 3px solid $color-tertiary;
+        }
     }
 
     input {
-      display: none;
+        display: none;
     }
 
-      &__item {
-        @include grid-layout ($grid-ta__menu-item);
+    &__label {
         padding: 10px;
+        @include font-family(text, default);
+        font-size: 1.2rem;
+        font-weight: 300;
+        background-color: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 5px 10px silver;
+        cursor: pointer;
+        overflow: hidden;
+
+        &-items {
+            @include grid-layout($grid-ta__menu-label);
+            grid-template-columns: auto auto;
+            width: calc(100% + 60px);
+            transition: width 750ms cubic-bezier(0.33, 0, 0.07, 1);
+        }
 
         &-heading {
-          grid-area: item-heading;
-          line-height: 24px;
-          font-size: 1.7rem;
-          font-weight: 600;
-          @media (max-width: map-get($breakpoints, mobile-1)) {
-            font-size: 1.45rem;
-          }
+            grid-area: label-heading;
+            line-height: 24px;
+            font-size: 1.7rem;
+            font-weight: 600;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            @media (max-width: map-get($breakpoints, mobile-1)) {
+                font-size: 1.45rem;
+            }
         }
 
         &-complement {
-          grid-area: item-complement;
-          font-size: 1.4rem;
-          font-weight: 300;
-          line-height: 24px;
-          @media (max-width: map-get($breakpoints, mobile-1)) {
-            font-size: 1.2rem;
-          }
+            grid-area: label-complement;
+            font-size: 1.4rem;
+            font-weight: 300;
+            line-height: 24px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            @media (max-width: map-get($breakpoints, mobile-1)) {
+                font-size: 1.2rem;
+            }
         }
 
         &-price {
-          grid-area: item-price;
-          font-size: 1.4rem;
-          font-weight: 500;
-          line-height: 24px;
-          text-align: right;
-          padding-right: 10px;
-          @media (max-width: map-get($breakpoints, mobile-1)) {
-            font-size: 1.2rem;
-          }
+            grid-area: label-price;
+            font-size: 1.4rem;
+            font-weight: 500;
+            line-height: 24px;
+            justify-self: right;
+            margin-right: 70px;
+            @media (max-width: map-get($breakpoints, mobile-1)) {
+                font-size: 1.2rem;
+            }
         }
-      }
-      &-checkbox {
-  display: none;
-      }
-    }
 
-  /* BOUTON COMMANDE */
-  .main__button {
+    }
+    &__checkbox {
+        grid-area: 1 / 2 / 3 / 3;
+        background-color: $color-tertiary;
+        width: 60px;
+        line-height: 68px;
+        height: 68px;
+        text-align: center;
+        justify-self: right;
+        border-radius: 0 20px 20px 0;
+        margin: -10px -10px -10px 0;
+        &-icon.fas {
+            color: #ffffff;
+            font-size: 1.6rem;
+            transform: rotate(-270deg);
+            transition: transform 550ms;
+            transition-delay: 200ms;
+        }
+    }
+}
+
+.menu-section__label {
+    &:hover {
+        .menu-section__checkbox {
+
+            &-icon.fas {
+                transform: rotate(0deg);
+
+
+            }
+        }
+
+.menu-section__label-items {
+width: 100%;
+}
+    }
+}
+
+/* BOUTON COMMANDE */
+.main__button {
     @include button-description;
-    width: 186px;
+    padding: 0 50px;
     justify-self: center;
     margin: 50px 0;
     @include button-hover;
-  }
+}
 
-  /* FOOTER */
-  .footer {
+/* FOOTER */
+.footer {
     background-color: #353535;
-    color: #FFFFFF;
+    color: #ffffff;
     padding: 23px 0 30px 20px;
 
     &__heading {
-      @include font-family(logo, default);
-      font-size: 1.8rem;
-      font-weight: 400;
-      line-height: 24px;
-      color: #FFFFFF;
-      padding-bottom: 20px;
+        @include font-family(logo, default);
+        font-size: 1.8rem;
+        font-weight: 400;
+        line-height: 24px;
+        color: #ffffff;
+        padding-bottom: 20px;
     }
 
     &__list {
-      list-style: none;
+        list-style: none;
 
-      &-item {
-        @include font-family(text, default);
-        padding-bottom: 5px;
-      }
+        &-item {
+            @include font-family(text, default);
+            padding-bottom: 5px;
+        }
 
-      &-icon {
-        color: #FFFFFF;
-        height: 15px;
-        width: 15px;
-        font-size: 1.5rem;
-        padding-right: 25px;
-      }
+        &-icon {
+            color: #ffffff;
+            height: 15px;
+            width: 15px;
+            font-size: 1.5rem;
+            padding-right: 25px;
+        }
 
-      &-link {
-        font-size: 1.6rem;
-        color: #FFFFFF;
-        line-height: 20px;
-      }
+        &-link {
+            font-size: 1.6rem;
+            color: #ffffff;
+            line-height: 20px;
+        }
     }
-  }
-
-
-
-
+}
