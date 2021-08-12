@@ -17,23 +17,33 @@ $font: (
 //Variables - Media queries
 $breakpoints: (
          mobile-1: 360px,
-        tablet-index: 540px,
-
+        tablet-1: 520px,
+        tablet-2: 620px,
+        tablet-3: 720px,
+        tablet-4: 800px,
+        desktop-1: 1024px,
+        desktop-2: 1220px,
+        desktop-3: 1440px
 );
 
 //Variables - Grid
 $grid-ta__process-section--mobile: ("process-section__card-1" "process-section__card-2" "process-section__card-3");
 $grid-ta__process-section--tablet:("process-section__card-1 process-section__card-1 process-section__card-2 process-section__card-2"". process-section__card-3 process-section__card-3 .");
 $grid-ta__process-section--desktop: ("process-section__card-1 process-section__card-2 process-section__card-3");
-$grid-ta__restaurant-section--mobile: ("restaurants" "restaurant-article-1" "restaurant-article-2" "restaurant-article-3"
-        "restaurant-article-4");
+$grid-ta__restaurant-section--mobile: ("restaurants" "restaurant-article-1" "restaurant-article-2" "restaurant-article-3" "restaurant-article-4");
 $grid-ta__restaurant-section--tablet: ("restaurants restaurants" "restaurant-article-1 restaurant-article-2" "restaurant-article-3 restaurant-article-4");
 $grid-ta__restaurant-section--desktop: ("restaurants restaurants restaurants restaurants" "restaurant-article-1 restaurant-article-2 restaurant-article-3 restaurant-article-4");
+$grid-ta__restaurant-card: ("restaurant-card__name . restaurant-card__like" "restaurant-card__place . restaurant-card__like");
 $grid-ta__menu-page--mobile: ("starters-section" "plates-section" "desserts-section");
 $grid-ta__menu-page--tablet: ("starters-section starters-section plates-section plates-section" ". desserts-section desserts-section ." ". command-button command-button .");
 $grid-ta__menu-page--desktop: ("starters-section plates-section desserts-section"". command-button .");
+$grid-ta__menu-section--starters: ("starters-section__heading" "starters-section__label-1" "starters-section__label-2" "starters-section__label-3");
+$grid-ta__menu-section--starters-special:("starters-section__heading" "starters-section__label-1" "starters-section__label-2" "starters-section__label-3" "starters-section__label-4");
+$grid-ta__menu-section--plates:("plates-section__heading" "plates-section__label-1" "plates-section__label-2" "plates-section__label-3");
+$grid-ta__menu-section--plates-special:("plates-section__heading" "plates-section__label-1" "plates-section__label-2" "plates-section__label-3" ".");
+$grid-ta__menu-section--desserts:("desserts-section__heading" "desserts-section__label-1" "desserts-section__label-2" "desserts-section__label-3");
+$grid-ta__menu-section--desserts-special:("desserts-section__heading" "desserts-section__label-1" "desserts-section__label-2" "desserts-section__label-3" ".");
 $grid-ta__menu-label: ("label-heading ." "label-complement label-price");
-$grid-ta__footer-list-desktop: ("list-item list-item list-item list-item");
 
 //Variables - Special
 $counter: 1, 2, 3, 4;
@@ -102,7 +112,7 @@ $counter: 1, 2, 3, 4;
     animation: heart-filling 600ms linear;
             }
 
-//Mixins - Grid
+//Mixins - Layout
 @mixin grid-layout($grid-template-areas) {
     display: grid;
     grid-template-areas: $grid-template-areas;
@@ -250,7 +260,7 @@ position: fixed;
 
         &-top {
             background-color: darken($bgc-primary, 5%);
-            @media (min-width: 1024px) {
+            @media (min-width: map-get($breakpoints, desktop-1)) {
                 padding: 0 20%;
             }
         }
@@ -320,7 +330,7 @@ position: fixed;
     padding-right: 20px;
     padding-bottom: 66px;
     padding-left: calc((25px / 2) + 20px);
-    @media (min-width: 1024px) {
+    @media (min-width: map-get($breakpoints, desktop-1)) {
         padding-left: calc((25px / 2) + 50px);
         padding-right: 50px;
     }
@@ -337,12 +347,12 @@ position: fixed;
     &__list {
         @include grid-layout ($grid-ta__process-section--mobile);
         row-gap: 24px;
-        @media (min-width: 640px) and (max-width: 1024px) {
+        @media (min-width: map-get($breakpoints, tablet-2)) and (max-width: map-get($breakpoints, desktop-1)) {
             @include grid-layout ($grid-ta__process-section--tablet);
             grid-template-columns: repeat(4, 1fr);
             column-gap: 24px;
         }
-        @media (min-width: 1024px) {
+        @media (min-width: map-get($breakpoints, desktop-1)) {
             @include grid-layout ($grid-ta__process-section--desktop);
             grid-template-columns: repeat(3, 1fr);
             row-gap: 0;
@@ -386,11 +396,11 @@ position: fixed;
         @include grid-layout ($grid-ta__restaurant-section--mobile);
         row-gap: 18px;
         padding: 58px 20px 64px 20px;
-        @media (min-width: 540px) and (max-width: 1440px){
+        @media (min-width: map-get($breakpoints, tablet-1)) and (max-width: map-get($breakpoints, desktop-3)){
             @include grid-layout ($grid-ta__restaurant-section--tablet);
             gap: 18px;
         }
-        @media (min-width: 1024px) {
+        @media (min-width: map-get($breakpoints, desktop-1)) {
             @include grid-layout ($grid-ta__restaurant-section--desktop);
             grid-template-columns: repeat(4, 1fr);
             column-gap: 18px;
@@ -455,8 +465,7 @@ position: fixed;
         }
 
         &__info {
-            display: grid;
-            grid-template-areas: "restaurant-card__name . restaurant-card__like" "restaurant-card__place . restaurant-card__like";
+            @include grid-layout ($grid-ta__restaurant-card);
             grid-template-columns: auto 1fr auto;
             padding: 12px;
         }
@@ -541,7 +550,7 @@ position: fixed;
             position: relative;
             z-index: 10;
             padding: 37px 37px 0 20px;
-            @media (min-width: 800px) {
+            @media (min-width: map-get($breakpoints, tablet-4)) {
                 padding: 37px 87px 0 50px;
             }
         }
@@ -591,15 +600,15 @@ position: fixed;
     @include grid-layout($grid-ta__menu-page--mobile);
     padding: 0 12px 0 14px;
 
-    @media (min-width: 620px) and (max-width: 1024px) {
+    @media (min-width: map-get($breakpoints, tablet-2)) and (max-width: map-get($breakpoints, desktop-1)) {
         @include grid-layout($grid-ta__menu-page--tablet);
         grid-template-columns: repeat(4, 1fr);
         column-gap: 14px;
     }
-    @media (min-width: 800px) {
+    @media (min-width: map-get($breakpoints, tablet-4)) {
         padding: 0 50px;
     }
-    @media (min-width: 1024px) {
+    @media (min-width: map-get($breakpoints, desktop-1)) {
         @include grid-layout($grid-ta__menu-page--desktop);
         grid-template-columns: repeat(3, 1fr);
         column-gap: 14px;
@@ -684,26 +693,23 @@ position: fixed;
 
     &.starters-section {
         grid-area: starters-section;
-        display: grid;
-        grid-template-areas: "starters-section__heading" "starters-section__label-1" "starters-section__label-2" "starters-section__label-3";
+        @include grid-layout ($grid-ta__menu-section--starters);
         row-gap: 14px;
 
         &.special {
             grid-area: starters-section;
-            display: grid;
-            grid-template-areas: "starters-section__heading" "starters-section__label-1" "starters-section__label-2" "starters-section__label-3" "starters-section__label-4";
+            @include grid-layout($grid-ta__menu-section--starters-special);
             row-gap: 14px;
         }
     }
 
     &.plates-section {
         grid-area: plates-section;
-        display: grid;
-        grid-template-areas: "plates-section__heading" "plates-section__label-1" "plates-section__label-2" "plates-section__label-3";
+        @include grid-layout($grid-ta__menu-section--plates);
         row-gap: 14px;
         &.special {
-@media (min-width: 620px) and (max-width: 1024px) {
-            grid-template-areas: "plates-section__heading" "plates-section__label-1" "plates-section__label-2" "plates-section__label-3" ".";
+            @media (min-width: map-get($breakpoints, tablet-2)) and (max-width: map-get($breakpoints, desktop-1)) {
+            grid-template-areas: $grid-ta__menu-section--plates-special;
             grid-template-rows: auto repeat(4, 1fr);
 }
         }
@@ -711,13 +717,12 @@ position: fixed;
 
     &.desserts-section {
         grid-area: desserts-section;
-        display: grid;
-        grid-template-areas: "desserts-section__heading" "desserts-section__label-1" "desserts-section__label-2" "desserts-section__label-3";
+        @include grid-layout($grid-ta__menu-section--desserts);
         row-gap: 14px;
 
         &.special {
-            @media (min-width: 1024px) {
-                grid-template-areas: "desserts-section__heading" "desserts-section__label-1" "desserts-section__label-2" "desserts-section__label-3" ".";
+            @media (min-width: map-get($breakpoints, desktop-1)) {
+                grid-template-areas: $grid-ta__menu-section--desserts-special;
                 grid-template-rows: auto repeat(4, 1fr);
             }
         }
@@ -775,16 +780,16 @@ position: fixed;
             @media (max-width: map-get($breakpoints, mobile-1)) {
                 font-size: 1.45rem;
             }
-            @media (min-width: 620px) and (max-width: 720px) {
+            @media (min-width: map-get($breakpoints, tablet-2)) and (max-width: map-get($breakpoints, tablet-3)) {
                 font-size: 1.45rem;
             }
-            @media (min-width: 720px) and (max-width: 1024px) {
+            @media (min-width: map-get($breakpoints, tablet-3)) and (max-width: map-get($breakpoints, desktop-1)) {
                 font-size: 1.7rem;
             }
-            @media (min-width: 1024px) and (max-width: 1220px) {
+            @media (min-width: map-get($breakpoints, desktop-1)) and (max-width: map-get($breakpoints, desktop-2)) {
                 font-size: 1.45rem;
             }
-            @media (min-width: 1220px) {
+            @media (min-width: map-get($breakpoints, desktop-2)) {
                 font-size: 1.7rem;
             }
         }
@@ -800,16 +805,16 @@ position: fixed;
             @media (max-width: map-get($breakpoints, mobile-1)) {
                 font-size: 1.2rem;
             }
-            @media (min-width: 620px) and (max-width: 720px) {
+            @media (min-width: map-get($breakpoints, tablet-2)) and (max-width: map-get($breakpoints, tablet-3)) {
                 font-size: 1.2rem;
             }
-            @media (min-width: 720px) and (max-width: 1024px){
+            @media (min-width: map-get($breakpoints, tablet-3)) and (max-width: map-get($breakpoints, desktop-1)){
                 font-size: 1.4rem;
             }
-            @media (min-width: 1024px) and (max-width: 1220px) {
+            @media (min-width: map-get($breakpoints, desktop-1)) and (max-width: map-get($breakpoints, desktop-2)) {
                 font-size: 1.2rem;
             }
-            @media (min-width: 1220px) {
+            @media (min-width: map-get($breakpoints, desktop-2)) {
                 font-size: 1.4rem;
             }
         }
@@ -824,16 +829,16 @@ position: fixed;
             @media (max-width: map-get($breakpoints, mobile-1)) {
                 font-size: 1.2rem;
             }
-            @media (min-width: 620px) and (max-width: 720px) {
+            @media (min-width: map-get($breakpoints, tablet-2)) and (max-width: map-get($breakpoints, tablet-3)) {
                 font-size: 1.2rem;
             }
-            @media (min-width: 720px) and (max-width: 1024px) {
+            @media (min-width: map-get($breakpoints, tablet-3)) and (max-width: map-get($breakpoints, desktop-1)) {
                 font-size: 1.4rem;
             }
-            @media (min-width: 1024px) and (max-width: 1220px) {
+            @media (min-width: map-get($breakpoints, desktop-1)) and (max-width: map-get($breakpoints, desktop-2)) {
                 font-size: 1.2rem;
             }
-            @media (min-width: 1220px) {
+            @media (min-width: map-get($breakpoints, desktop-2)) {
                 font-size: 1.4rem;
             }
         }
@@ -880,7 +885,7 @@ position: fixed;
     justify-self: center;
     margin: 50px 0;
     @include button-hover;
-    @media (min-width: 620px) {
+    @media (min-width: map-get($breakpoints, tablet-2)) {
         grid-area: command-button;
     }
 }
@@ -890,7 +895,7 @@ position: fixed;
     background-color: #353535;
     color: #ffffff;
     padding: 23px 20px 30px 20px;
-    @media (min-width: 1024px) {
+    @media (min-width: map-get($breakpoints, desktop-1)) {
         padding: 23px 50px 30px 50px;
     }
 
@@ -901,17 +906,17 @@ position: fixed;
         line-height: 24px;
         color: #ffffff;
         padding-bottom: 20px;
-        @media (min-width: 540px) {
+        @media (min-width: map-get($breakpoints, tablet-1)) {
             text-align: center;
         }
     }
 
     &__list {
         list-style: none;
-        @media (min-width: 540px) {
+        @media (min-width: map-get($breakpoints, tablet-1)) {
             text-align: center;
         }
-        @media (min-width: 1024px) {
+        @media (min-width: map-get($breakpoints, desktop-1)) {
             text-align: center;
             display: grid;
             column-gap: 10px;
@@ -921,7 +926,7 @@ position: fixed;
         &-item {
             @include font-family(text, default);
             padding-bottom: 5px;
-            @media (min-width: 1024px) {
+            @media (min-width: map-get($breakpoints, desktop-1)) {
             }
         }
 
