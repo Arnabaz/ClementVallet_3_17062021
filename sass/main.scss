@@ -16,16 +16,24 @@ $font: (
 
 //Variables - Media queries
 $breakpoints: (
-    mobile-1: 360px,
+         mobile-1: 360px,
+        tablet-index: 540px,
+
 );
 
 //Variables - Grid
-$grid-ta__restaurant-section: (
-    "restaurants" "restaurant-card-1" "restaurant-card-2" "restaurant-card-3"
-        "restaurant-card-4"
-);
-$grid-ta__menu-page: ("starters-section" "plates-section" "desserts-section");
+$grid-ta__process-section--mobile: ("process-section__card-1" "process-section__card-2" "process-section__card-3");
+$grid-ta__process-section--tablet:("process-section__card-1 process-section__card-1 process-section__card-2 process-section__card-2"". process-section__card-3 process-section__card-3 .");
+$grid-ta__process-section--desktop: ("process-section__card-1 process-section__card-2 process-section__card-3");
+$grid-ta__restaurant-section--mobile: ("restaurants" "restaurant-article-1" "restaurant-article-2" "restaurant-article-3"
+        "restaurant-article-4");
+$grid-ta__restaurant-section--tablet: ("restaurants restaurants" "restaurant-article-1 restaurant-article-2" "restaurant-article-3 restaurant-article-4");
+$grid-ta__restaurant-section--desktop: ("restaurants restaurants restaurants restaurants" "restaurant-article-1 restaurant-article-2 restaurant-article-3 restaurant-article-4");
+$grid-ta__menu-page--mobile: ("starters-section" "plates-section" "desserts-section");
+$grid-ta__menu-page--tablet: ("starters-section starters-section plates-section plates-section" ". desserts-section desserts-section ." ". command-button command-button .");
+$grid-ta__menu-page--desktop: ("starters-section plates-section desserts-section"". command-button .");
 $grid-ta__menu-label: ("label-heading ." "label-complement label-price");
+$grid-ta__footer-list-desktop: ("list-item list-item list-item list-item");
 
 //Variables - Special
 $counter: 1, 2, 3, 4;
@@ -47,9 +55,8 @@ $counter: 1, 2, 3, 4;
     border-radius: 25px;
     background: linear-gradient(
         to top left,
-        $color-primary 10%,
-        $color-secondary 75%
-    );
+        $color-primary 15%,
+        $color-secondary 95%);
     box-shadow: 1px 3px 5px silver;
 }
 @mixin button-hover {
@@ -64,6 +71,7 @@ $counter: 1, 2, 3, 4;
 }
 
 @mixin heart-description-empty {
+    position:absolute;
     border: none;
     font-size: 2.5rem;
     font-weight: 100;
@@ -72,26 +80,26 @@ $counter: 1, 2, 3, 4;
         }
 
 @mixin heart-description-full {
-            position: absolute;
-            border: none;
+    position: absolute;
+    border: none;
     cursor: pointer;
     font-size: 2.5rem;
     color: transparent;
         }
 
 @mixin heart-empty-hover {
-                transition: opacity 200ms;
-                transition-delay: 300ms;
-                opacity: 0;
+    transition: opacity 200ms;
+    transition-delay: 300ms;
+    opacity: 0;
             }
 
 @mixin heart-full-hover {
-                background: linear-gradient(to top, $color-secondary 20%, $color-primary 70%);
-                -webkit-background-clip: text;
-                background-size: 100% 100%;
-                background-position: bottom;
-                background-repeat: no-repeat;
-                animation: heart-filling 600ms linear;
+    background: radial-gradient($color-secondary 10%, $color-primary 40%);
+    -webkit-background-clip: text;
+    background-size: 100% 100%;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    animation: heart-filling 600ms linear;
             }
 
 //Mixins - Grid
@@ -146,6 +154,23 @@ $counter: 1, 2, 3, 4;
     }
 }
 
+@keyframes loading-spinner {
+    0% {
+opacity : 1;
+        transform: scale(2);
+    }
+    95% {
+opacity: 0.9
+    }
+    99% {
+        transform:scale(1);
+    }
+    100% {
+opacity: 0;
+        transform: scale(0);
+    }
+}
+
 // Fonctions
 
 // Placeholders
@@ -167,7 +192,16 @@ a {
 
 /* LOADING SPINNER */
 .loading-spinner {
-    
+    display: none;
+position: fixed;
+    z-index: 100;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    opacity: 0;
+    background-color: white;
+    animation: loading-spinner 3000ms ease-in-out;
 }
 
 /* HEADER */
@@ -216,6 +250,9 @@ a {
 
         &-top {
             background-color: darken($bgc-primary, 5%);
+            @media (min-width: 1024px) {
+                padding: 0 20%;
+            }
         }
 
         &-label {
@@ -283,6 +320,10 @@ a {
     padding-right: 20px;
     padding-bottom: 66px;
     padding-left: calc((25px / 2) + 20px);
+    @media (min-width: 1024px) {
+        padding-left: calc((25px / 2) + 50px);
+        padding-right: 50px;
+    }
 
     &__heading {
         @include font-family(text, default);
@@ -294,9 +335,19 @@ a {
     }
 
     &__list {
-        display: grid;
-        grid-template-areas: "process-section__card-1" "process-section__card-2" "process-section__card-3";
+        @include grid-layout ($grid-ta__process-section--mobile);
         row-gap: 24px;
+        @media (min-width: 640px) and (max-width: 1024px) {
+            @include grid-layout ($grid-ta__process-section--tablet);
+            grid-template-columns: repeat(4, 1fr);
+            column-gap: 24px;
+        }
+        @media (min-width: 1024px) {
+            @include grid-layout ($grid-ta__process-section--desktop);
+            grid-template-columns: repeat(3, 1fr);
+            row-gap: 0;
+            column-gap: 24px;
+        }
     }
 
     &__card {
@@ -332,9 +383,20 @@ a {
 
     &-section {
         background-color: $bgc-primary;
-        @include grid-layout($grid-ta__restaurant-section);
+        @include grid-layout ($grid-ta__restaurant-section--mobile);
         row-gap: 18px;
         padding: 58px 20px 64px 20px;
+        @media (min-width: 540px) and (max-width: 1440px){
+            @include grid-layout ($grid-ta__restaurant-section--tablet);
+            gap: 18px;
+        }
+        @media (min-width: 1024px) {
+            @include grid-layout ($grid-ta__restaurant-section--desktop);
+            grid-template-columns: repeat(4, 1fr);
+            column-gap: 18px;
+            row-gap: 0;
+            padding: 58px 50px 64px 50px;
+        }
     }
 
     &__heading {
@@ -343,29 +405,32 @@ a {
         font-size: 2.4rem;
         font-weight: 700;
         padding-bottom: 8px;
+
     }
 
-    &-card {
-        background-color: #ffffff;
-        border-radius: 20px;
-        box-shadow: 1px 3px 8px 1px silver;
-        cursor: pointer;
-
-        &.restaurant-card-1 {
-            grid-area: restaurant-card-1;
+    &-article {
+        &.restaurant-article-1 {
+            grid-area: restaurant-article-1;
         }
 
-        &.restaurant-card-2 {
-            grid-area: restaurant-card-2;
+        &.restaurant-article-2 {
+            grid-area: restaurant-article-2;
         }
 
-        &.restaurant-card-3 {
-            grid-area: restaurant-card-3;
+        &.restaurant-article-3 {
+            grid-area: restaurant-article-3;
         }
 
-        &.restaurant-card-4 {
-            grid-area: restaurant-card-4;
+        &.restaurant-article-4 {
+            grid-area: restaurant-article-4;
         }
+    }
+        &-card {
+            position:relative;
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 1px 3px 8px 1px silver;
+            cursor: pointer;
 
         &__img {
             height: 174px;
@@ -375,7 +440,8 @@ a {
 
         &__new {
             position: absolute;
-            right: 32px;
+            top: 13px;
+            right: 13px;
             z-index: 2;
             @include font-family(text, default);
             text-align: center;
@@ -383,7 +449,6 @@ a {
             font-weight: 500;
             line-height: 29px;
             width: 81px;
-            margin-top: -170px;
             border-radius: 2px;
             background-color: $color-tertiary;
             color: darken($color-tertiary, 40%);
@@ -403,44 +468,45 @@ a {
             font-weight: 800;
             line-height: 25px;
             padding-top: 3px;
-        }
+       }
 
-        &__place {
-            grid-area: restaurant-card__place;
-            @include font-family(text, default);
-            font-size: 1.6rem;
-            font-weight: 300;
-            line-height: 20px;
-            padding-bottom: 5px;
-        }
+       &__place {
+           grid-area: restaurant-card__place;
+           @include font-family(text, default);
+           font-size: 1.6rem;
+           font-weight: 300;
+           line-height: 20px;
+           padding-bottom: 5px;
+       }
 
-        &__icon {
-            &.heart-icon__empty {
-                @include heart-description-empty;
-                background-color: #ffffff;
-                padding: 0 11px;
-                line-height: 53px;
-            }
-            &.heart-icon__full {
-                @include heart-description-full;
-                right:32px;
-                padding: 0 11px;
-                line-height: 53px;
-            }
-        }
+       &__icon {
+           &.heart-icon__empty {
+               @include heart-description-empty;
+               background-color: #ffffff;
+               padding: 0 11px;
+               line-height: 53px;
+          }
+          &.heart-icon__full {
+              @include heart-description-full;
+              padding: 0 11px;
+              line-height: 53px;
+         }
+     }
 
-        &__like {
-            grid-area: restaurant-card__like;
-            &:hover {
-                .heart-icon__empty {
-                    @include heart-empty-hover;
-                }
-                .heart-icon__full {
-                    @include heart-full-hover;
-                }
-            }
-        }
-    }
+     &__like {
+         grid-area: restaurant-card__like;
+         position:relative;
+         right: 40px;
+         &:hover {
+             .heart-icon__empty {
+                 @include heart-empty-hover;
+             }
+             .heart-icon__full {
+                 @include heart-full-hover;
+             }
+         }
+     }
+ }
 }
 
 /* PAGES MENU - MAIN */
@@ -452,14 +518,14 @@ a {
 
 /* PAGES MENU - MAIN - Header */
 .main {
-    padding: 0 12px 33px 14px;
+    padding-bottom:33px;
     background-color: $bgc-primary;
 
     &.menu-page {
     }
 
     &-header {
-        margin: 0 -20px;
+
 
         &__img {
             height: 257px;
@@ -474,7 +540,10 @@ a {
             border-radius: 37px 37px 0 0;
             position: relative;
             z-index: 10;
-            padding: 37px 37px 0 26px;
+            padding: 37px 37px 0 20px;
+            @media (min-width: 800px) {
+                padding: 37px 87px 0 50px;
+            }
         }
 
         &__restaurant-name {
@@ -490,18 +559,20 @@ a {
         &__icon {
             &.heart-icon__empty {
                 @include heart-description-empty;
+                right: 0;
                 background-color: $bgc-primary;
                 line-height: 25px;
             }
 
             &.heart-icon__full {
                 @include heart-description-full;
-                right: 37px;
+                right: 0;
                 line-height: 25px;
             }
         }
 
         &__like {
+            position:relative;
             &:hover {
                 .heart-icon__empty {
                     @include heart-empty-hover;
@@ -517,7 +588,22 @@ a {
 
 // Mise en place grille des menus
 .menu-form {
-    @include grid-layout($grid-ta__menu-page);
+    @include grid-layout($grid-ta__menu-page--mobile);
+    padding: 0 12px 0 14px;
+
+    @media (min-width: 620px) and (max-width: 1024px) {
+        @include grid-layout($grid-ta__menu-page--tablet);
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 14px;
+    }
+    @media (min-width: 800px) {
+        padding: 0 50px;
+    }
+    @media (min-width: 1024px) {
+        @include grid-layout($grid-ta__menu-page--desktop);
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 14px;
+    }
 }
 
 .starters-section {
@@ -615,6 +701,12 @@ a {
         display: grid;
         grid-template-areas: "plates-section__heading" "plates-section__label-1" "plates-section__label-2" "plates-section__label-3";
         row-gap: 14px;
+        &.special {
+@media (min-width: 620px) and (max-width: 1024px) {
+            grid-template-areas: "plates-section__heading" "plates-section__label-1" "plates-section__label-2" "plates-section__label-3" ".";
+            grid-template-rows: auto repeat(4, 1fr);
+}
+        }
     }
 
     &.desserts-section {
@@ -622,6 +714,13 @@ a {
         display: grid;
         grid-template-areas: "desserts-section__heading" "desserts-section__label-1" "desserts-section__label-2" "desserts-section__label-3";
         row-gap: 14px;
+
+        &.special {
+            @media (min-width: 1024px) {
+                grid-template-areas: "desserts-section__heading" "desserts-section__label-1" "desserts-section__label-2" "desserts-section__label-3" ".";
+                grid-template-rows: auto repeat(4, 1fr);
+            }
+        }
     }
 
     &__heading {
@@ -656,6 +755,7 @@ a {
         box-shadow: 0 5px 10px silver;
         cursor: pointer;
         overflow: hidden;
+        max-width: 400px;
 
         &-items {
             @include grid-layout($grid-ta__menu-label);
@@ -675,6 +775,18 @@ a {
             @media (max-width: map-get($breakpoints, mobile-1)) {
                 font-size: 1.45rem;
             }
+            @media (min-width: 620px) and (max-width: 720px) {
+                font-size: 1.45rem;
+            }
+            @media (min-width: 720px) and (max-width: 1024px) {
+                font-size: 1.7rem;
+            }
+            @media (min-width: 1024px) and (max-width: 1220px) {
+                font-size: 1.45rem;
+            }
+            @media (min-width: 1220px) {
+                font-size: 1.7rem;
+            }
         }
 
         &-complement {
@@ -688,6 +800,18 @@ a {
             @media (max-width: map-get($breakpoints, mobile-1)) {
                 font-size: 1.2rem;
             }
+            @media (min-width: 620px) and (max-width: 720px) {
+                font-size: 1.2rem;
+            }
+            @media (min-width: 720px) and (max-width: 1024px){
+                font-size: 1.4rem;
+            }
+            @media (min-width: 1024px) and (max-width: 1220px) {
+                font-size: 1.2rem;
+            }
+            @media (min-width: 1220px) {
+                font-size: 1.4rem;
+            }
         }
 
         &-price {
@@ -699,6 +823,18 @@ a {
             margin-right: 70px;
             @media (max-width: map-get($breakpoints, mobile-1)) {
                 font-size: 1.2rem;
+            }
+            @media (min-width: 620px) and (max-width: 720px) {
+                font-size: 1.2rem;
+            }
+            @media (min-width: 720px) and (max-width: 1024px) {
+                font-size: 1.4rem;
+            }
+            @media (min-width: 1024px) and (max-width: 1220px) {
+                font-size: 1.2rem;
+            }
+            @media (min-width: 1220px) {
+                font-size: 1.4rem;
             }
         }
 
@@ -725,7 +861,7 @@ a {
 }
 
 .menu-section__label {
-    &:active {
+    &:hover {
         .menu-section__checkbox {
             &-icon.fas {
                 transform: rotate(0deg);
@@ -744,13 +880,19 @@ a {
     justify-self: center;
     margin: 50px 0;
     @include button-hover;
+    @media (min-width: 620px) {
+        grid-area: command-button;
+    }
 }
 
 /* FOOTER */
 .footer {
     background-color: #353535;
     color: #ffffff;
-    padding: 23px 0 30px 20px;
+    padding: 23px 20px 30px 20px;
+    @media (min-width: 1024px) {
+        padding: 23px 50px 30px 50px;
+    }
 
     &__heading {
         @include font-family(logo, default);
@@ -759,14 +901,28 @@ a {
         line-height: 24px;
         color: #ffffff;
         padding-bottom: 20px;
+        @media (min-width: 540px) {
+            text-align: center;
+        }
     }
 
     &__list {
         list-style: none;
+        @media (min-width: 540px) {
+            text-align: center;
+        }
+        @media (min-width: 1024px) {
+            text-align: center;
+            display: grid;
+            column-gap: 10px;
+            grid-template-columns: repeat(4, 1fr);
+        }
 
         &-item {
             @include font-family(text, default);
             padding-bottom: 5px;
+            @media (min-width: 1024px) {
+            }
         }
 
         &-icon {
@@ -784,3 +940,4 @@ a {
         }
     }
 }
+
