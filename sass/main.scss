@@ -51,15 +51,20 @@ $counter: 1, 2, 3, 4;
 
 // MIXINS
 //Mixins - Font
-@mixin font-family($font-primary, $font-secondary) {
+@mixin font-properties ($font-primary, $font-secondary, $font-size, $font-weight) {
     $font-primary: map-get($font, $font-primary);
     $font-secondary: map-get($font, $font-secondary);
     font-family: $font-primary, $font-secondary;
+    font-size:$font-size;
+    font-weight:$font-weight;
 }
+@mixin font-size-weight ($font-size, $font-weight) {
+    font-size: $font-size;
+    font-weight:$font-weight;
+}
+
 @mixin button-description {
-    @include font-family(text, default);
-    font-size: 1.6rem;
-    font-weight: 400;
+    @include font-properties(text, default, 1.6rem, 400);
     color: #ffffff;
     line-height: 50px;
     border: none;
@@ -70,6 +75,7 @@ $counter: 1, 2, 3, 4;
         $color-secondary 95%);
     box-shadow: 1px 3px 5px silver;
 }
+
 @mixin button-hover {
     &:hover {
         box-shadow: 2px 5px 5px 1px silver;
@@ -82,10 +88,9 @@ $counter: 1, 2, 3, 4;
 }
 
 @mixin heart-description-empty {
+    @include font-size-weight(2.5rem, 100);
     position:absolute;
     border: none;
-    font-size: 2.5rem;
-    font-weight: 100;
     cursor: pointer;
     color:#000000;
         }
@@ -102,7 +107,7 @@ $counter: 1, 2, 3, 4;
     transition: opacity 200ms;
     transition-delay: 300ms;
     opacity: 0;
-            }
+}
 
 @mixin heart-full-hover {
     background: radial-gradient(at 50% bottom, lighten($color-secondary, 5%) 10%, lighten($color-primary, 5%) 75%);
@@ -111,7 +116,7 @@ $counter: 1, 2, 3, 4;
     background-position: bottom;
     background-repeat: no-repeat;
     animation: heart-filling 600ms linear;
-            }
+}
 
 //Mixins - Layout
 @mixin grid-layout($grid-template-areas) {
@@ -125,9 +130,7 @@ $counter: 1, 2, 3, 4;
             grid-area: process-section__card-#{$counter};
             &::before {
                 display: inline-block;
-                @include font-family(text, default);
-                font-size: 1.2rem;
-                font-weight: 400;
+                @include font-properties(text, default, 1.2rem, 400);
                 position: relative;
                 content: "#{$counter}";
                 top: -2.5px;
@@ -333,9 +336,7 @@ position: fixed;
         left: 45%;
         text-align: center;
         color:black;
-        @include font-family(logo, default);
-        font-size: 2rem;
-        font-weight: 700;
+        @include font-properties(logo, default, 2rem, 700);
     }
 
     div {
@@ -343,6 +344,7 @@ position: fixed;
         position: absolute;
     }
 }
+
 .ls{
     width:200px;
     height:200px;
@@ -454,13 +456,11 @@ div {
     }
 
     &__heading {
-        @include font-family(logo, default);
-        font-size: 3rem;
+        @include font-properties(logo, default, 3rem, inherit);
         line-height: 28.5px;
 
         &.menu-page {
-            @include font-family(logo, default);
-            font-size: 3rem;
+            @include font-properties(logo, default, 3rem, inherit);
             line-height: 28.5px;
             user-select: none;
         }
@@ -497,18 +497,14 @@ div {
         &-input {
             border: none;
             background-color: darken($bgc-primary, 5%);
-            @include font-family(text, default);
-            font-size: 1.6rem;
-            font-weight: 500;
+            @include font-properties(text, default, 1.6rem, 500);
             line-height: 48px;
             text-align: center;
             width: 40%;
             margin-top: 2px;
 
             &::placeholder {
-                @include font-family(text, default);
-                font-size: 1.6rem;
-                font-weight: 500;
+                @include font-properties(text, default, 1.6rem, 500);
             }
 
             &:focus {
@@ -519,17 +515,13 @@ div {
         }
 
         &-heading {
-            @include font-family(text, default);
-            font-size: 2.2rem;
-            font-weight: 700;
+            @include font-properties(text, default, 2.2rem, 700);
             line-height: 25px;
             padding: 40px 65px 20px 65px;
         }
 
         &-description {
-            @include font-family(text, default);
-            font-size: 1.6rem;
-            font-weight: 300;
+            @include font-properties(text, default, 1.6rem, 300);
             line-height: 20px;
             padding: 0 20px 30px 20px;
         }
@@ -557,9 +549,7 @@ div {
     }
 
     &__heading {
-        @include font-family(text, default);
-        font-size: 2rem;
-        font-weight: 500;
+        @include font-properties(text, default, 2rem, 500);
         line-height: 25px;
         padding-bottom: 30px;
         color: black;
@@ -585,9 +575,7 @@ div {
         background-color: $bgc-primary;
         border-radius: 20px;
         box-shadow: 0 5px 10px silver;
-        @include font-family(text, default);
-        font-size: 1.6rem;
-        font-weight: 600;
+        @include font-properties(text, default, 1.6rem, 600);
         user-select: none;
 
         &.process-section__card-3 {
@@ -631,12 +619,9 @@ div {
     }
 
     &__heading {
-        @include font-family(text, default);
+        @include font-properties(text, default, 2.4rem, 700);
         line-height: 20px;
-        font-size: 2.4rem;
-        font-weight: 700;
         padding-bottom: 8px;
-
     }
 
     &-article {
@@ -674,10 +659,8 @@ div {
             top: 13px;
             right: 13px;
             z-index: 2;
-            @include font-family(text, default);
+            @include font-properties(text, default, 1.4rem, 500);
             text-align: center;
-            font-size: 1.4rem;
-            font-weight: 500;
             line-height: 29px;
             width: 81px;
             border-radius: 2px;
@@ -693,18 +676,14 @@ div {
 
         &__name {
             grid-area: restaurant-card__name;
-            @include font-family(text, default);
-            font-size: 1.7rem;
-            font-weight: 800;
+            @include font-properties(text, default, 1.7rem, 800);
             line-height: 25px;
             padding-top: 3px;
        }
 
        &__place {
            grid-area: restaurant-card__place;
-           @include font-family(text, default);
-           font-size: 1.6rem;
-           font-weight: 300;
+           @include font-properties(text, default, 1.6rem, 300);
            line-height: 20px;
            padding-bottom: 5px;
        }
@@ -740,12 +719,6 @@ div {
 }
 
 /* PAGES MENU - MAIN */
-.starters-section__label-price,
-.plates-section__label-price,
-.desserts-section__label-price {
-    display: inline-block;
-}
-
 /* PAGES MENU - MAIN - Header */
 .main {
     padding-bottom:33px;
@@ -777,9 +750,7 @@ div {
         }
 
         &__restaurant-name {
-            @include font-family(logo, default);
-            font-size: 2.7rem;
-            font-weight: 700;
+            @include font-properties(logo, default, 2.7rem, 700);
             line-height: 25px;
             @media (max-width: map-get($breakpoints, mobile-1)) {
                 font-size: 2.3rem;}
@@ -806,7 +777,6 @@ div {
                 .heart-icon__empty {
                     @include heart-empty-hover;
                 }
-
                 .heart-icon__full {
                     @include heart-full-hover;
                 }
@@ -950,9 +920,7 @@ div {
     }
 
     &__heading {
-        @include font-family(text, default);
-        font-size: 1.5rem;
-        font-weight: 400;
+        @include font-properties(text, default, 1.5rem, 400);
         text-transform: uppercase;
         padding: 34px 0 0 6px;
         line-height: 30px;
@@ -973,9 +941,7 @@ div {
 
     &__label {
         padding: 10px;
-        @include font-family(text, default);
-        font-size: 1.2rem;
-        font-weight: 300;
+        @include font-properties(text, default, 1.2rem, 300);
         background-color: #ffffff;
         border-radius: 20px;
         box-shadow: 0 5px 10px silver;
@@ -1057,8 +1023,7 @@ div {
 
         &-price {
             grid-area: label-price;
-            font-size: 1.4rem;
-            font-weight: 500;
+            @include font-size-weight(1.4rem, 500);
             line-height: 24px;
             justify-self: right;
             margin-right: 70px;
@@ -1125,9 +1090,7 @@ div {
     }
 
     &__heading {
-        @include font-family(logo, default);
-        font-size: 1.8rem;
-        font-weight: 400;
+        @include font-properties(logo, default, 1.8rem, 400);
         line-height: 24px;
         color: #ffffff;
         padding-bottom: 20px;
@@ -1149,7 +1112,7 @@ div {
         }
 
         &-item {
-            @include font-family(text, default);
+            @include font-properties(text, default, inherit, inherit);
             padding-bottom: 5px;
             @media (min-width: map-get($breakpoints, desktop-1)) {
             }
@@ -1170,4 +1133,3 @@ div {
         }
     }
 }
-

@@ -294,11 +294,13 @@ a {
 .header__heading {
   font-family: Shrikhand, sans-serif;
   font-size: 3rem;
+  font-weight: inherit;
   line-height: 28.5px;
 }
 .header__heading.menu-page {
   font-family: Shrikhand, sans-serif;
   font-size: 3rem;
+  font-weight: inherit;
   line-height: 28.5px;
   user-select: none;
 }
@@ -542,9 +544,9 @@ a {
 }
 .restaurant__heading {
   font-family: Roboto, sans-serif;
-  line-height: 20px;
   font-size: 2.4rem;
   font-weight: 700;
+  line-height: 20px;
   padding-bottom: 8px;
 }
 .restaurant-article.restaurant-article-1 {
@@ -577,9 +579,9 @@ a {
   right: 13px;
   z-index: 2;
   font-family: Roboto, sans-serif;
-  text-align: center;
   font-size: 1.4rem;
   font-weight: 500;
+  text-align: center;
   line-height: 29px;
   width: 81px;
   border-radius: 2px;
@@ -609,10 +611,10 @@ a {
   padding-bottom: 5px;
 }
 .restaurant-card__icon.heart-icon__empty {
-  position: absolute;
-  border: none;
   font-size: 2.5rem;
   font-weight: 100;
+  position: absolute;
+  border: none;
   cursor: pointer;
   color: #000000;
   background-color: #ffffff;
@@ -648,12 +650,6 @@ a {
 }
 
 /* PAGES MENU - MAIN */
-.starters-section__label-price,
-.plates-section__label-price,
-.desserts-section__label-price {
-  display: inline-block;
-}
-
 /* PAGES MENU - MAIN - Header */
 .main {
   padding-bottom: 33px;
@@ -690,10 +686,10 @@ a {
   }
 }
 .main-header__icon.heart-icon__empty {
-  position: absolute;
-  border: none;
   font-size: 2.5rem;
   font-weight: 100;
+  position: absolute;
+  border: none;
   cursor: pointer;
   color: #000000;
   right: 0;
@@ -1090,6 +1086,8 @@ a {
 }
 .footer__list-item {
   font-family: Roboto, sans-serif;
+  font-size: inherit;
+  font-weight: inherit;
   padding-bottom: 5px;
 }
 .footer__list-icon {
