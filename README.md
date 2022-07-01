@@ -8,7 +8,7 @@
 
 ## Compétences évaluées :
 
-- Mettre e noeuvre des effets CSS raphiques avancés,
+- Mettre en oeuvre des effets CSS raphiques avancés,
 
 - Mettre en place une structure de navigation pour un site web,
 
